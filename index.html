@@ -246,6 +246,42 @@ body:before{opacity:.22;background-image:repeating-linear-gradient(90deg,transpa
   .mobile-top button{min-width:43px}
 }
 
+
+/* Readable 2- or 3-column mobile calendar cards. */
+@media(max-width:600px){
+ .mobile-month-heading{flex-direction:column;align-items:stretch;gap:12px;margin:16px 0 14px}
+ .mobile-month-heading .month-caption{margin:0 2px;font-size:30px}
+ .mobile-month-switch{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:5px}
+ .mobile-month-switch button{min-width:0;min-height:48px;padding:8px 4px;font-size:clamp(12px,3.3vw,15px);line-height:1.25;white-space:normal}
+ .mobile-month-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:10px}
+ .mobile-month-list[data-columns="3"]{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+ .mobile-day-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;width:100%;height:100%;min-height:210px;gap:9px;padding:12px 10px 11px}
+ .mobile-day-date{display:flex;flex-direction:row;align-items:baseline;justify-content:space-between;gap:4px;width:100%;flex:0 0 auto;padding:0}
+ .mobile-day-date strong{font-size:37px;line-height:1}
+ .mobile-day-date span{font-size:13px;white-space:nowrap;margin:0}
+ .mobile-day-card .sainticon{align-self:center;flex:0 0 auto;width:52px;min-width:0;height:70px;margin:1px auto}
+ .mobile-day-main{flex:1 1 auto;min-height:0;width:100%;gap:9px;justify-content:space-between;padding:0}
+ .mobile-day-title{display:block;font-size:calc(15px * var(--size));line-height:1.4;font-weight:650;overflow-wrap:anywhere;word-break:normal;white-space:normal}
+ .mobile-day-fast{font-size:calc(12px * var(--size));line-height:1.3;align-self:stretch;padding:7px 5px;text-align:center;white-space:normal;overflow-wrap:anywhere}
+ .mobile-month-list[data-columns="3"] .mobile-day-card{padding:10px 7px;gap:7px;min-height:190px;border-radius:11px}
+ .mobile-month-list[data-columns="3"] .mobile-day-date strong{font-size:30px}
+ .mobile-month-list[data-columns="3"] .mobile-day-date span{font-size:11px}
+ .mobile-month-list[data-columns="3"] .sainticon{width:42px;height:57px}
+ .mobile-month-list[data-columns="3"] .mobile-day-title{font-size:calc(13px * var(--size));line-height:1.34}
+ .mobile-month-list[data-columns="3"] .mobile-day-fast{font-size:calc(11px * var(--size));padding:6px 4px}
+}
+@media(max-width:360px){
+ .mobile-month-list{gap:7px}
+ .mobile-day-card{padding:10px 8px;min-height:203px}
+ .mobile-day-date{flex-basis:auto}
+ .mobile-day-date strong{font-size:33px}
+ .mobile-day-card .sainticon{flex-basis:auto;width:47px;min-width:0;height:62px}
+ .mobile-day-title{font-size:calc(14px * var(--size))}
+ .mobile-month-list[data-columns="3"] .mobile-day-card{padding:9px 5px}
+ .mobile-month-list[data-columns="3"] .mobile-day-title{font-size:calc(12px * var(--size))}
+ .mobile-month-list[data-columns="3"] .mobile-day-date strong{font-size:26px}
+}
+
 </style>
 </head>
 <body>
@@ -455,11 +491,11 @@ async function shareDay(key){const d=getD(key),text=`${key} — ${d.feastName||'
 function init(){renderCountdowns();settingsUI();applySettings();document.getElementById('previous').onclick=()=>nav(-1);document.getElementById('next').onclick=()=>nav(1);document.getElementById('today').onclick=goToToday;document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.getElementById('search').oninput=e=>handleSearch(e.target.value);document.getElementById('close').onclick=closeModal;document.getElementById('veil').addEventListener('click',e=>{if(e.target.id==='veil')closeModal()});document.getElementById('prevDay').onclick=()=>navigateDay(-1);document.getElementById('nextDay').onclick=()=>navigateDay(1);document.getElementById('share').onclick=()=>state.modalKey&&shareDay(state.modalKey);document.getElementById('settingsBtn').onclick=toggleSettings;document.getElementById('closePanel').onclick=toggleSettings;document.getElementById('candleBtn').onclick=toggleCandleMode;document.querySelectorAll('[data-font]').forEach(b=>b.onclick=()=>{settings.fontSize=b.dataset.font;applySettings()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();document.getElementById('panel').classList.remove('open')}else if(state.modalKey&&e.key==='ArrowLeft')navigateDay(-1);else if(state.modalKey&&e.key==='ArrowRight')navigateDay(1)});document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('results').innerHTML=''})}
 
 
-let mobileMonthLayout='list';
-try{mobileMonthLayout=localStorage.getItem('oc-mobile-month-layout')==='grid'?'grid':'list'}catch(e){}
+let mobileMonthLayout='2';
+try{mobileMonthLayout=['2','3','grid'].includes(localStorage.getItem('oc-mobile-month-layout'))?localStorage.getItem('oc-mobile-month-layout'):'2'}catch(e){}
 function renderMobileMonthList(current){
  const y=current.getFullYear(),m=current.getMonth(),last=new Date(y,m+1,0).getDate();
- let out='<div class="mobile-month-list" aria-label="Дни, празници и светци през месеца">';
+ let out='<div class="mobile-month-list" data-columns="'+mobileMonthLayout+'" aria-label="Дни, празници и светци през месеца">';
  for(let day=1;day<=last;day++){
   const date=at(y,m+1,day),key=iso(date),x=getD(key);
   const label=(x.dailyText2027||x.feastName||'Църковен ден').replace(/\.(?:строг пост|постен ден|сирна седмица|риба|пост)\s*$/i,'').trim();
@@ -470,8 +506,8 @@ function renderMobileMonthList(current){
 }
 function renderMobileMonth(current){
  const label=MONTHS[current.getMonth()]+' '+current.getFullYear();
- const controls=`<div class="mobile-month-heading"><h2 class="month-caption">${esc(label)}</h2><div class="mobile-month-switch" role="group" aria-label="Изглед за месеца"><button type="button" data-mobile-month-layout="list" aria-pressed="${mobileMonthLayout==='list'}">Списък</button><button type="button" data-mobile-month-layout="grid" aria-pressed="${mobileMonthLayout==='grid'}">Календар</button></div></div>`;
- return controls+(mobileMonthLayout==='list'?renderMobileMonthList(current):renderMonthView());
+ const controls=`<div class="mobile-month-heading"><h2 class="month-caption">${esc(label)}</h2><div class="mobile-month-switch" role="group" aria-label="Изглед за месеца"><button type="button" data-mobile-month-layout="2" aria-pressed="${mobileMonthLayout==='2'}">2 колони</button><button type="button" data-mobile-month-layout="3" aria-pressed="${mobileMonthLayout==='3'}">3 колони</button><button type="button" data-mobile-month-layout="grid" aria-pressed="${mobileMonthLayout==='grid'}">7 дни</button></div></div>`;
+ return controls+(mobileMonthLayout==='grid'?renderMonthView():renderMobileMonthList(current));
 }
 
 const originalRender=render;
