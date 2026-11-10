@@ -2,7 +2,7 @@
   {
     "date": "01.01.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -26,7 +26,7 @@
   {
     "date": "02.01.2026",
     "weekday": "Петък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -46,7 +46,7 @@
   {
     "date": "03.01.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -66,7 +66,7 @@
   {
     "date": "04.01.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -145,7 +145,7 @@
   {
     "date": "08.01.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -185,7 +185,7 @@
   {
     "date": "10.01.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -205,7 +205,7 @@
   {
     "date": "11.01.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -225,7 +225,7 @@
   {
     "date": "12.01.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -245,7 +245,7 @@
   {
     "date": "13.01.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -285,7 +285,7 @@
   {
     "date": "15.01.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -325,7 +325,7 @@
   {
     "date": "17.01.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -345,7 +345,7 @@
   {
     "date": "18.01.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -365,7 +365,7 @@
   {
     "date": "19.01.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -385,7 +385,7 @@
   {
     "date": "20.01.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -429,7 +429,7 @@
   {
     "date": "22.01.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -469,7 +469,7 @@
   {
     "date": "24.01.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -489,7 +489,7 @@
   {
     "date": "25.01.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -509,7 +509,7 @@
   {
     "date": "26.01.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -529,7 +529,7 @@
   {
     "date": "27.01.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -569,7 +569,7 @@
   {
     "date": "29.01.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -613,7 +613,7 @@
   {
     "date": "31.01.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -633,7 +633,7 @@
   {
     "date": "01.02.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -668,7 +668,7 @@
   {
     "date": "03.02.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -688,7 +688,7 @@
   {
     "date": "04.02.2026",
     "weekday": "Сряда",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -708,7 +708,7 @@
   {
     "date": "05.02.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -728,7 +728,7 @@
   {
     "date": "06.02.2026",
     "weekday": "Петък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -748,7 +748,7 @@
   {
     "date": "07.02.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -768,7 +768,7 @@
   {
     "date": "08.02.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -788,7 +788,7 @@
   {
     "date": "09.02.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -802,13 +802,13 @@
         "description": "Почитан(и) в православния месецослов за свидетелството на християнската вяра и мъченическия подвиг."
       }
     ],
-    "special_notes": "",
+    "special_notes": "Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "10.02.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -822,17 +822,17 @@
         "description": "Свещеномъченик от началото на III век, почитан като молитвен застъпник при болести."
       }
     ],
-    "special_notes": "Имен ден: Харалампи",
+    "special_notes": "Имен ден: Харалампи Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "11.02.2026",
     "weekday": "Сряда",
-    "fasting_status": "Пост без олио",
-    "fasting_type": "Еднодневен пост (сряда)",
-    "oil_allowed": false,
-    "fish_allowed": false,
-    "wine_allowed": false,
+    "fasting_status": "Месо",
+    "fasting_type": null,
+    "oil_allowed": true,
+    "fish_allowed": true,
+    "wine_allowed": true,
     "fast_period": null,
     "feast_level": "Светия",
     "feast_name": "Св. свещеномъченик Власий; Св. Георги Софийски Нови",
@@ -846,13 +846,13 @@
         "description": "Чества се в православния църковен календар на Българската патриаршия."
       }
     ],
-    "special_notes": "",
+    "special_notes": "Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "12.02.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -866,17 +866,17 @@
         "description": "Чества се в православния църковен календар на Българската патриаршия."
       }
     ],
-    "special_notes": "",
+    "special_notes": "Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "13.02.2026",
     "weekday": "Петък",
-    "fasting_status": "Пост без олио",
-    "fasting_type": "Еднодневен пост (петък)",
-    "oil_allowed": false,
-    "fish_allowed": false,
-    "wine_allowed": false,
+    "fasting_status": "Месо",
+    "fasting_type": null,
+    "oil_allowed": true,
+    "fish_allowed": true,
+    "wine_allowed": true,
     "fast_period": null,
     "feast_level": "Светия",
     "feast_name": "Преп. Мартиниан",
@@ -886,13 +886,13 @@
         "description": "Почитан(и) за подвижнически живот, молитва и вярност към православната вяра."
       }
     ],
-    "special_notes": "",
+    "special_notes": "Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "14.02.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -906,13 +906,13 @@
         "description": "Чества се в православния църковен календар на Българската патриаршия."
       }
     ],
-    "special_notes": "Задушница.",
+    "special_notes": "Задушница. Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
     "date": "15.02.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -926,7 +926,7 @@
         "description": "Почитан(и) сред апостолските свидетели и проповедници на Христовото благовестие."
       }
     ],
-    "special_notes": "Неделя Месопустна (Месни заговезни).",
+    "special_notes": "Неделя Месопустна (Месни заговезни). Месопустна седмица — сряда и петък са без пост.",
     "dispensation": false
   },
   {
@@ -2045,7 +2045,7 @@
   {
     "date": "13.04.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2065,7 +2065,7 @@
   {
     "date": "14.04.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2085,7 +2085,7 @@
   {
     "date": "15.04.2026",
     "weekday": "Сряда",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2105,7 +2105,7 @@
   {
     "date": "16.04.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2125,7 +2125,7 @@
   {
     "date": "17.04.2026",
     "weekday": "Петък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2145,7 +2145,7 @@
   {
     "date": "18.04.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2169,7 +2169,7 @@
   {
     "date": "19.04.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2189,7 +2189,7 @@
   {
     "date": "20.04.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2209,7 +2209,7 @@
   {
     "date": "21.04.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2249,7 +2249,7 @@
   {
     "date": "23.04.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2293,7 +2293,7 @@
   {
     "date": "25.04.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2313,7 +2313,7 @@
   {
     "date": "26.04.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2333,7 +2333,7 @@
   {
     "date": "27.04.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2353,7 +2353,7 @@
   {
     "date": "28.04.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2393,7 +2393,7 @@
   {
     "date": "30.04.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2433,7 +2433,7 @@
   {
     "date": "02.05.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2453,7 +2453,7 @@
   {
     "date": "03.05.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2473,7 +2473,7 @@
   {
     "date": "04.05.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2493,7 +2493,7 @@
   {
     "date": "05.05.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2533,7 +2533,7 @@
   {
     "date": "07.05.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2573,7 +2573,7 @@
   {
     "date": "09.05.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2593,7 +2593,7 @@
   {
     "date": "10.05.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2613,7 +2613,7 @@
   {
     "date": "11.05.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2633,7 +2633,7 @@
   {
     "date": "12.05.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2673,7 +2673,7 @@
   {
     "date": "14.05.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2713,7 +2713,7 @@
   {
     "date": "16.05.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2733,7 +2733,7 @@
   {
     "date": "17.05.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2757,7 +2757,7 @@
   {
     "date": "18.05.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2777,7 +2777,7 @@
   {
     "date": "19.05.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2857,7 +2857,7 @@
   {
     "date": "23.05.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2877,7 +2877,7 @@
   {
     "date": "24.05.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2897,7 +2897,7 @@
   {
     "date": "25.05.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2917,7 +2917,7 @@
   {
     "date": "26.05.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -2961,7 +2961,7 @@
   {
     "date": "28.05.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3001,7 +3001,7 @@
   {
     "date": "30.05.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3036,7 +3036,7 @@
   {
     "date": "01.06.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3056,7 +3056,7 @@
   {
     "date": "02.06.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3076,7 +3076,7 @@
   {
     "date": "03.06.2026",
     "weekday": "Сряда",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3096,7 +3096,7 @@
   {
     "date": "04.06.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3116,7 +3116,7 @@
   {
     "date": "05.06.2026",
     "weekday": "Петък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3136,7 +3136,7 @@
   {
     "date": "06.06.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3156,7 +3156,7 @@
   {
     "date": "07.06.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3608,7 +3608,7 @@
   {
     "date": "29.06.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3628,7 +3628,7 @@
   {
     "date": "30.06.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3668,7 +3668,7 @@
   {
     "date": "02.07.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3708,7 +3708,7 @@
   {
     "date": "04.07.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3728,7 +3728,7 @@
   {
     "date": "05.07.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3748,7 +3748,7 @@
   {
     "date": "06.07.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3768,7 +3768,7 @@
   {
     "date": "07.07.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3808,7 +3808,7 @@
   {
     "date": "09.07.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3848,7 +3848,7 @@
   {
     "date": "11.07.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3868,7 +3868,7 @@
   {
     "date": "12.07.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3892,7 +3892,7 @@
   {
     "date": "13.07.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3912,7 +3912,7 @@
   {
     "date": "14.07.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3952,7 +3952,7 @@
   {
     "date": "16.07.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -3992,7 +3992,7 @@
   {
     "date": "18.07.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4012,7 +4012,7 @@
   {
     "date": "19.07.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4032,7 +4032,7 @@
   {
     "date": "20.07.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4052,7 +4052,7 @@
   {
     "date": "21.07.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4092,7 +4092,7 @@
   {
     "date": "23.07.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4132,7 +4132,7 @@
   {
     "date": "25.07.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4152,7 +4152,7 @@
   {
     "date": "26.07.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4172,7 +4172,7 @@
   {
     "date": "27.07.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4200,7 +4200,7 @@
   {
     "date": "28.07.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4240,7 +4240,7 @@
   {
     "date": "30.07.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4574,7 +4574,7 @@
   {
     "date": "16.08.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4598,7 +4598,7 @@
   {
     "date": "17.08.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4618,7 +4618,7 @@
   {
     "date": "18.08.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4658,7 +4658,7 @@
   {
     "date": "20.08.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4702,7 +4702,7 @@
   {
     "date": "22.08.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4722,7 +4722,7 @@
   {
     "date": "23.08.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4742,7 +4742,7 @@
   {
     "date": "24.08.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4762,7 +4762,7 @@
   {
     "date": "25.08.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4802,7 +4802,7 @@
   {
     "date": "27.08.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4862,7 +4862,7 @@
   {
     "date": "30.08.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4882,7 +4882,7 @@
   {
     "date": "31.08.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4897,7 +4897,7 @@
   {
     "date": "01.09.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4941,7 +4941,7 @@
   {
     "date": "03.09.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -4985,7 +4985,7 @@
   {
     "date": "05.09.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5005,7 +5005,7 @@
   {
     "date": "06.09.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5025,7 +5025,7 @@
   {
     "date": "07.09.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5080,7 +5080,7 @@
   {
     "date": "10.09.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5120,7 +5120,7 @@
   {
     "date": "12.09.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5140,7 +5140,7 @@
   {
     "date": "13.09.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5175,7 +5175,7 @@
   {
     "date": "15.09.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5215,7 +5215,7 @@
   {
     "date": "17.09.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5255,7 +5255,7 @@
   {
     "date": "19.09.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5275,7 +5275,7 @@
   {
     "date": "20.09.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5295,7 +5295,7 @@
   {
     "date": "21.09.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5315,7 +5315,7 @@
   {
     "date": "22.09.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5355,7 +5355,7 @@
   {
     "date": "24.09.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5395,7 +5395,7 @@
   {
     "date": "26.09.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5415,7 +5415,7 @@
   {
     "date": "27.09.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5435,7 +5435,7 @@
   {
     "date": "28.09.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5455,7 +5455,7 @@
   {
     "date": "29.09.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5495,7 +5495,7 @@
   {
     "date": "01.10.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5535,7 +5535,7 @@
   {
     "date": "03.10.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5555,7 +5555,7 @@
   {
     "date": "04.10.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5575,7 +5575,7 @@
   {
     "date": "05.10.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5595,7 +5595,7 @@
   {
     "date": "06.10.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5635,7 +5635,7 @@
   {
     "date": "08.10.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5679,7 +5679,7 @@
   {
     "date": "10.10.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5699,7 +5699,7 @@
   {
     "date": "11.10.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5719,7 +5719,7 @@
   {
     "date": "12.10.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5739,7 +5739,7 @@
   {
     "date": "13.10.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5779,7 +5779,7 @@
   {
     "date": "15.10.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5819,7 +5819,7 @@
   {
     "date": "17.10.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5839,7 +5839,7 @@
   {
     "date": "18.10.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5863,7 +5863,7 @@
   {
     "date": "19.10.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5883,7 +5883,7 @@
   {
     "date": "20.10.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5923,7 +5923,7 @@
   {
     "date": "22.10.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5963,7 +5963,7 @@
   {
     "date": "24.10.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -5983,7 +5983,7 @@
   {
     "date": "25.10.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6003,7 +6003,7 @@
   {
     "date": "26.10.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6023,7 +6023,7 @@
   {
     "date": "27.10.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6067,7 +6067,7 @@
   {
     "date": "29.10.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6107,7 +6107,7 @@
   {
     "date": "31.10.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6127,7 +6127,7 @@
   {
     "date": "01.11.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6147,7 +6147,7 @@
   {
     "date": "02.11.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6167,7 +6167,7 @@
   {
     "date": "03.11.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6207,7 +6207,7 @@
   {
     "date": "05.11.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6247,7 +6247,7 @@
   {
     "date": "07.11.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6267,7 +6267,7 @@
   {
     "date": "08.11.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6287,7 +6287,7 @@
   {
     "date": "09.11.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6307,7 +6307,7 @@
   {
     "date": "10.11.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6347,7 +6347,7 @@
   {
     "date": "12.11.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -6387,7 +6387,7 @@
   {
     "date": "14.11.2026",
     "weekday": "Събота",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -7248,7 +7248,7 @@
   {
     "date": "27.12.2026",
     "weekday": "Неделя",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -7268,7 +7268,7 @@
   {
     "date": "28.12.2026",
     "weekday": "Понеделник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -7288,7 +7288,7 @@
   {
     "date": "29.12.2026",
     "weekday": "Вторник",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -7308,7 +7308,7 @@
   {
     "date": "30.12.2026",
     "weekday": "Сряда",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
@@ -7328,7 +7328,7 @@
   {
     "date": "31.12.2026",
     "weekday": "Четвъртък",
-    "fasting_status": "Месоядие",
+    "fasting_status": "Месо",
     "fasting_type": null,
     "oil_allowed": true,
     "fish_allowed": true,
