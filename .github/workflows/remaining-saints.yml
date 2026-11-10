@@ -1,0 +1,56 @@
+name: Add remaining identifiable Orthodox saint icons
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/remaining-saints.yml'
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet requests pillow
+      - name: Download specifically identified public-domain icons
+        run: |
+          python - <<'PY'
+          import requests,io,time,json
+          from PIL import Image
+          from pathlib import Path
+          from urllib.parse import quote
+          FILES={"11-03":"Pimen Zografski, painted by Simeon Molerov.jpg","11-26":"16 Saint Stylianos Icon from Saint Paraskevi Church in Adam..jpg","11-27":"Archangels Chapel in Rila Monastery David of Bulgaria and Theodsius of Tarnovo - 1845.jpg","11-28":"Rila Mon. - Fresco mir. icon 008 Stephen the New.jpg","12-18":"Saint Modestus Icon from Saint George Church in Melissourgos.jpg","12-23":"St Naum of Ohrid, Last Quarter of XIV Century, St Mary Perivleptos Church, Ohrid Icon Gallery.jpg"}
+          root=Path('icons');root.mkdir(exist_ok=True)
+          s=requests.Session();s.headers['User-Agent']='OrthodoxCalendar/1.0 (Public domain saint artwork archival)'
+          success={};fail=[]
+          for day,fn in FILES.items():
+              dest=root/(day+'.webp')
+              if dest.exists():continue
+              url='https://commons.wikimedia.org/wiki/Special:FilePath/'+quote(fn)
+              for attempt in range(4):
+                  try:
+                      response=s.get(url,timeout=45);response.raise_for_status()
+                      picture=Image.open(io.BytesIO(response.content)).convert('RGB')
+                      picture.thumbnail((360,480))
+                      picture.save(dest,'WEBP',quality=82)
+                      success[day]={'name':fn,'source':'https://commons.wikimedia.org/wiki/File:'+fn.replace(' ','_'),'asset':str(dest)}
+                      print('OK',day,fn,flush=True)
+                      break
+                  except Exception as exc:
+                      print('FAILED',day,attempt,str(exc)[:120],flush=True)
+                      if attempt==3:fail.append({'day':day,'name':fn,'reason':str(exc)[:200]})
+                      else:time.sleep(12*(attempt+1))
+              time.sleep(9)
+          (root/'FINAL_CURATED_SOURCES.json').write_text(json.dumps(success,ensure_ascii=False,indent=2),encoding='utf8')
+          (root/'FINAL_CURATED_FAILURES.json').write_text(json.dumps(fail,ensure_ascii=False,indent=2),encoding='utf8')
+          
+          PY
+      - name: Commit verified icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons
+          if ! git diff --cached --quiet; then
+            git commit -m "Add remaining open-licensed November and December saint icons"
+            git push
+          fi
