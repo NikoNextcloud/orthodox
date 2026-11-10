@@ -1,0 +1,50 @@
+name: Archive curated public-domain saint icons
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/curated-saint-icons.yml'
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet requests pillow
+      - name: Download individually identified public-domain icons
+        run: |
+          python - <<'PY'
+          import json,requests,io,time
+          from PIL import Image
+          from pathlib import Path
+          from urllib.parse import quote
+          FILES={"11-13":"Icons of John Chrysostom.jpg","11-16":"Matthew the Evangelist - icon.jpeg","11-21":"Presentation of Mary Icon from Saint George Church in Melissourgos.jpg","11-23":"Alexander Nevsky vita icon.jpg","11-24":"Icon of Saint Catherine.jpg","11-30":"St Andrew the Apostle - Bulgarian icon.jpg","12-12":"SPYRIDON.jpg","12-20":"John of Kronstadt, Иоанн Кронштадский.jpg","12-23":"St Naum of Ohrid, Last Quarter of XIV Century, St Mary Perivleptos Church, Ohrid Icon Gallery.jpg"}
+          root=Path('icons');root.mkdir(exist_ok=True)
+          result={}; failures=[]
+          s=requests.Session();s.headers['User-Agent']='OrthodoxCalendar/1.0 (public domain icon archiving)'
+          for day,fn in FILES.items():
+            out=root/(day+'.webp')
+            if out.exists(): continue
+            url='https://commons.wikimedia.org/wiki/Special:FilePath/'+quote(fn)
+            try:
+              r=s.get(url,timeout=40);r.raise_for_status()
+              im=Image.open(io.BytesIO(r.content)).convert('RGB');im.thumbnail((360,480));im.save(out,'WEBP',quality=82)
+              result[day]={'file':fn,'source':'https://commons.wikimedia.org/wiki/File:'+fn.replace(' ','_'),'image':'icons/'+day+'.webp'}
+              print('Downloaded',day,fn,flush=True)
+            except Exception as e:
+              failures.append({'day':day,'file':fn,'error':str(e)[:200]});print('FAILED',day,str(e)[:140],flush=True)
+            time.sleep(1.4)
+          (root/'CURATED_SOURCES.json').write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8')
+          (root/'CURATED_FAILURES.json').write_text(json.dumps(failures,ensure_ascii=False,indent=2),encoding='utf-8')
+          
+          PY
+      - name: Commit icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons
+          if ! git diff --cached --quiet; then
+            git commit -m "Add additional verified Orthodox icons for November and December"
+            git push
+          fi
