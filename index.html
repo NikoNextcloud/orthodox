@@ -122,11 +122,62 @@ body:before{opacity:.22;background-image:repeating-linear-gradient(90deg,transpa
 .day{min-height:124px}
 @media(max-width:760px){.day{min-height:112px!important}.day .mini{font-size:9px!important;padding-top:4px!important}.day .saint{font-size:11px!important;-webkit-line-clamp:3!important;display:-webkit-box!important}}
 @media(max-width:480px){.patriarchal-cross{font-size:44px}.day{min-height:104px!important}.day .mini{font-size:8px!important;line-height:1.12!important}.day .saint{font-size:9px!important;-webkit-line-clamp:3!important}.count strong.datevalue{font-size:23px}}
+
+/* 2027 memorial Saturdays and fasting overview, supplied by the project owner */
+.annual2027{margin:26px 0 10px;border:1px solid #a57a3e82;border-radius:16px;background:linear-gradient(145deg,#382012,#1b0c07);overflow:hidden;box-shadow:0 7px 28px #0003}
+.annual2027 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:19px 22px;color:var(--bright);font-weight:700;font-size:clamp(16px,2vw,21px)}
+.annual2027 summary::-webkit-details-marker{display:none}
+.annual2027 summary:after{content:"＋";font-size:25px;font-weight:400;color:var(--gold)}
+.annual2027[open] summary:after{content:"−"}
+.annual2027 summary:focus-visible{outline:2px solid var(--bright);outline-offset:-3px}
+.annual2027-inner{padding:0 22px 22px;border-top:1px solid #b68a463a}
+.annual2027-lead{color:var(--secondary);font-size:12px;line-height:1.6;margin:15px 0}
+.annual2027-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.annual2027-card{background:#180a06b8;border:1px solid #bd93534a;border-radius:12px;padding:16px 18px}
+.annual2027 h3{font:600 19px Georgia,serif;color:var(--bright);margin:0 0 13px}
+.annual2027 ul{margin:0;padding-left:20px;display:grid;gap:12px}
+.annual2027 li{line-height:1.55;overflow-wrap:anywhere}
+.annual2027 li::marker{color:var(--gold)}
+.annual2027 strong{color:#f0d59d}
+.annual2027-note{margin-top:16px;padding:16px 18px;background:#210f09;border-left:3px solid #bd924a;border-radius:9px}
+.annual2027-note p{line-height:1.65;margin:8px 0}
+@media(max-width:640px){.annual2027{margin:22px 0 8px}.annual2027 summary{padding:15px;font-size:16px}.annual2027-inner{padding:0 12px 14px}.annual2027-grid{grid-template-columns:1fr;gap:12px}.annual2027-card,.annual2027-note{padding:14px}.annual2027 h3{font-size:18px}}
+
 </style>
 </head>
 <body>
 <nav class="mobile-top" aria-label="Мобилна навигация"><button id="mobilePrevious" aria-label="Предишен месец">‹</button><span class="mobile-period" id="mobilePeriod">Православен календар</span><button id="mobileNext" aria-label="Следващ месец">›</button><button id="mobileToday" aria-label="Днес">⌂</button><button id="mobileSettings" aria-label="Настройки">⚙</button></nav><header class="mast"><div class="patriarchal-cross" aria-label="Православен кръст" role="img">☦</div><div class="ornament">✦ ───── ☦ ───── ✦</div><h1>ПРАВОСЛАВЕН КАЛЕНДАР</h1><div class="mast-divider"><span>✦</span><span>☦</span><span>✦</span></div><p>Български православен църковен календар · 2025–2027</p><div class="topcontrols"><div class="searchwrap"><input id="search" aria-label="Търси светец или имен ден" placeholder="Търси светец или имен ден..." autocomplete="off"><div id="results" class="searchresults"></div></div><button class="round" id="settingsBtn" aria-label="Настройки">⚙</button><button class="round" id="candleBtn" aria-label="Режим на свещ">🕯</button></div></header>
-<main class="shell"><div class="sectionhead">✤ До предстоящите празници ✤</div><button class="mobile-hero" id="mobileHero" aria-label="Отвори днешния ден"></button><div class="countdowns" id="countdowns"></div><div class="toolbar"><div class="tabs"><button data-view="month" class="active">Месец</button><button data-view="week">Седмица</button><button data-view="day">Ден</button></div><div class="pager"><button id="previous" aria-label="Предишен период">◂</button><div id="period" class="period"></div><button id="next" aria-label="Следващ период">▸</button><button id="today" aria-label="Днес">Днес</button></div></div><div class="legend"><span>🕯 Строг пост</span><span>🫒 Пост с олио</span><span>🐟 Риба</span><span>🌿 Блажен ден</span><span>✝ Разрешение</span></div><div id="viewRoot" aria-live="polite"></div></main><footer class="foot">✦ ───── ☩ ───── ✦<p>Създаден с уважение към православната традиция</p></footer>
+<main class="shell"><div class="sectionhead">✤ До предстоящите празници ✤</div><button class="mobile-hero" id="mobileHero" aria-label="Отвори днешния ден"></button><div class="countdowns" id="countdowns"></div><div class="toolbar"><div class="tabs"><button data-view="month" class="active">Месец</button><button data-view="week">Седмица</button><button data-view="day">Ден</button></div><div class="pager"><button id="previous" aria-label="Предишен период">◂</button><div id="period" class="period"></div><button id="next" aria-label="Следващ период">▸</button><button id="today" aria-label="Днес">Днес</button></div></div><div class="legend"><span>🕯 Строг пост</span><span>🫒 Пост с олио</span><span>🐟 Риба</span><span>🌿 Блажен ден</span><span>✝ Разрешение</span></div><div id="viewRoot" aria-live="polite"></div>
+<details class="annual2027" id="annual2027">
+ <summary><span>☦ Задушници и пости през 2027 г.</span></summary>
+ <div class="annual2027-inner">
+  <p class="annual2027-lead">Справка по предоставените данни за православния календар за 2027 г.</p>
+  <div class="annual2027-grid">
+   <section class="annual2027-card" aria-label="Задушници през 2027 година">
+    <h3>🕯 Задушници</h3>
+    <ul>
+     <li><strong>Месна задушница</strong> — <time datetime="2027-03-06">6 март 2027 г.</time> (събота)</li>
+     <li><strong>Черешова задушница</strong> — <time datetime="2027-06-19">19 юни 2027 г.</time> (събота)</li>
+     <li><strong>Архангелова задушница</strong> — <time datetime="2027-11-06">6 ноември 2027 г.</time> (събота)</li>
+    </ul>
+   </section>
+   <section class="annual2027-card" aria-label="Многодневни пости през 2027 година">
+    <h3>🫒 Многодневни пости</h3>
+    <ul>
+     <li><strong>Великият пост</strong> — от <time datetime="2027-03-15">15 март</time> до <time datetime="2027-05-01">1 май 2027 г.</time></li>
+     <li><strong>Петровият пост</strong> — от <time datetime="2027-06-28">28 юни</time> до <time datetime="2027-06-28">28 юни 2027 г.</time></li>
+     <li><strong>Богородичният пост</strong> — от <time datetime="2027-08-01">1 август</time> до <time datetime="2027-08-14">14 август 2027 г.</time></li>
+     <li><strong>Рождественският (Коледният) пост</strong> — от <time datetime="2027-11-15">15 ноември</time> до <time datetime="2027-12-24">24 декември 2027 г.</time></li>
+    </ul>
+   </section>
+  </div>
+  <div class="annual2027-note">
+   <h3>✝ Постни дни и изключения</h3>
+   <p>Постни дни са всяка <strong>сряда и петък</strong>, освен през сплошните седмици: Светлата седмица, седмицата след Петдесетница, седмицата след Неделя на Митаря и фарисея и Святките от 25 декември до 4 януари.</p>
+   <p><strong>Еднодневни строги пости:</strong> <time datetime="2027-01-05">5 януари</time>, <time datetime="2027-04-30">Велики петък (30 април)</time>, <time datetime="2027-08-29">29 август</time> и <time datetime="2027-09-14">14 септември 2027 г.</time></p>
+  </div>
+ </div>
+</details></main><footer class="foot">✦ ───── ☩ ───── ✦<p>Създаден с уважение към православната традиция</p></footer>
 <div class="veil" id="veil"><div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Информация за деня" tabindex="-1"><div class="modalhead"><span class="ornament">✦ · ☩ · ✦</span><button class="close" id="close" aria-label="Затвори">×</button></div><div id="modalContent"></div><div class="modalnav"><button id="prevDay">◂ Вчера</button><button id="share">📤 Сподели</button><button id="nextDay">Утре ▸</button></div></div></div>
 <aside class="panel" id="panel"><div class="modalhead"><h2>⚙ Настройки</h2><button class="close" id="closePanel" aria-label="Затвори настройки">×</button></div><div id="settingRows"></div><p style="color:var(--secondary);font-size:12px;margin-top:25px">Размер на текста</p><div style="display:flex;gap:8px"><button class="fontbtn" data-font="small">А−</button><button class="fontbtn" data-font="normal">А</button><button class="fontbtn" data-font="large">А+</button></div><p style="font-size:12px;line-height:1.7;color:var(--secondary);margin-top:30px">Календар 2025–2027 · Източник за сверяване: Българска патриаршия. Постните категории са опростени.</p></aside>
 <script>
