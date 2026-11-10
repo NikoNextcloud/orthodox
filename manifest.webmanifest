@@ -1,0 +1,19 @@
+{
+  "name": "Православен Календар",
+  "short_name": "Православен",
+  "lang": "bg",
+  "description": "Български православен календар за 2025 и 2026 г.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1a0a0a",
+  "theme_color": "#1a0a0a",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
