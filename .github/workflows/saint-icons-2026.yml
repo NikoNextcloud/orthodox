@@ -1,0 +1,78 @@
+name: Retrieve Orthodox saint icons for November and December 2026
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/saint-icons-2026.yml'
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet requests Pillow
+      - name: Search Wikimedia Commons and cache matched icons
+        run: |
+          python - <<'PY'
+          import base64,io,json,re,time,requests
+          from PIL import Image
+          from pathlib import Path
+          QUERIES={"11-01":"Saints Cosmas Damian icon","11-02":"Akindynos Pegasios Anempodistos icon","11-03":"Pimen Zografsky Bulgarian saint icon","11-04":"Joannicius the Great icon","11-05":"Galaction Episteme icon","11-06":"Paul the Confessor Constantinople icon","11-07":"33 martyrs Melitene icon","11-08":"Archangel Michael orthodox icon","11-09":"Nektarios Aegina orthodox icon","11-10":"apostles Erastus Olympas Rhodion icon","11-11":"Saint Menas orthodox icon","11-12":"John the Merciful icon","11-13":"John Chrysostom icon","11-14":"Apostle Philip icon","11-15":"Gurias Samonas Abibus icon","11-16":"Matthew Evangelist orthodox icon","11-17":"Gregory Thaumaturgus icon","11-18":"Plato Romanus Antioch martyrs icon","11-19":"Obadiah prophet icon","11-20":"Gregory of Decapolis icon","11-21":"Presentation of the Theotokos icon","11-22":"Philemon apostle icon","11-23":"Alexander Nevsky orthodox icon","11-24":"Catherine of Alexandria orthodox icon","11-25":"Clement of Ohrid icon","11-26":"Stylianos of Paphlagonia icon","11-27":"Theodosius of Tarnovo icon","11-28":"Stephen the New martyr icon","11-29":"Paramon martyr icon","11-30":"Andrew the Apostle orthodox icon","12-01":"Nahum prophet icon","12-02":"Porphyrios Kafsokalyvitis icon","12-03":"Zephaniah prophet orthodox icon","12-04":"Saint Barbara orthodox icon","12-05":"Sabbas the Sanctified icon","12-06":"Nicholas of Myra icon","12-07":"Ambrose of Milan icon","12-08":"Patapios of Thebes icon","12-09":"Conception Saint Anna icon","12-10":"Menas Hermogenes Eugraphus martyrs icon","12-11":"Daniel the Stylite icon","12-12":"Spyridon of Trimythous icon","12-13":"Eustratius Auxentius Eugenius Mardarius Orestes icon","12-14":"Thyrsus Leucius Callinicus icon","12-15":"Eleutherius of Illyria icon","12-16":"Haggai prophet icon","12-17":"Daniel and three youths icon","12-18":"Modestus of Jerusalem icon","12-19":"Boniface martyr Tarsus icon","12-20":"John of Kronstadt icon","12-21":"Juliana of Nicomedia icon","12-22":"Anastasia of Sirmium icon","12-23":"Naum of Ohrid icon","12-24":"Eugenia of Rome orthodox icon","12-25":"Nativity of Christ orthodox icon","12-26":"Synaxis of the Theotokos icon","12-27":"Stephen protomartyr icon","12-28":"20000 martyrs Nicomedia icon","12-29":"Massacre of the Innocents orthodox icon","12-30":"Anysia of Thessalonica icon","12-31":"Melania the Younger icon"}
+          API="https://commons.wikimedia.org/w/api.php"
+          S=requests.Session();S.headers.update({"User-Agent":"OrthodoxCalendar-Saints/1.0 (GitHub open source icon lookup)"})
+          root=Path("icons");root.mkdir(exist_ok=True)
+          reg={};errors=[]
+          for day,q in QUERIES.items():
+              out=root/(day+".webp")
+              if out.exists():
+                  reg[day]={"path":"icons/"+day+".webp","source":"See icons/SOURCES.json or original file"}
+                  continue
+              try:
+                  terms=[q]
+                  if len(q.split())>3:terms.append(" ".join(q.split()[:2])+" icon")
+                  best=None
+                  for term in terms:
+                      r=S.get(API,params={"action":"query","list":"search","srnamespace":6,"srsearch":term,"srlimit":12,"format":"json"},timeout=25);r.raise_for_status()
+                      hits=r.json().get("query",{}).get("search",[])
+                      words=[w.lower() for w in re.findall(r"[a-zA-Z]{4,}",q) if w.lower() not in ("saint","saints","orthodox","icon","martyrs","the","and","of")]
+                      for h in hits:
+                          title=h["title"];tl=title.lower()
+                          if not re.search(r"\\.(jpg|jpeg|png|webp)$",tl):continue
+                          if any(x in tl for x in ("church building","church of","monastery building","statue","photograph","reliquary","museum entrance","cathedral exterior","stamp")):continue
+                          matches=sum(w in tl for w in words)
+                          if matches<1:continue
+                          score=matches*5 + (7 if any(z in tl for z in ("icon","ikona","икона","eikon")) else 0) + (2 if "orthodox" in tl else 0) - (4 if "painting" in tl else 0)
+                          if score<9:continue
+                          if best is None or score>best[0]:best=(score,title)
+                      if best:break
+                  if not best:
+                      errors.append({"day":day,"search":q,"reason":"No adequately matched Orthodox icon found"});continue
+                  title=best[1]
+                  r=S.get(API,params={"action":"query","titles":title,"prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":360,"format":"json"},timeout=25);r.raise_for_status()
+                  page=next(iter(r.json()["query"]["pages"].values())); info=page["imageinfo"][0]
+                  lic=info.get("extmetadata",{}).get("LicenseShortName",{}).get("value","")
+                  if not ("public domain" in lic.lower() or "cc0" in lic.lower() or lic.lower().startswith("cc by")):
+                      errors.append({"day":day,"search":q,"reason":"License not on allowlist","file":title,"license":lic});continue
+                  img=S.get(info.get("thumburl",info["url"]),timeout=30);img.raise_for_status()
+                  picture=Image.open(io.BytesIO(img.content)).convert("RGB");picture.thumbnail((360,480))
+                  picture.save(out,"WEBP",quality=82)
+                  reg[day]={"path":"icons/"+day+".webp","source":"https://commons.wikimedia.org/wiki/"+title.replace(" ","_"),"title":title,"license":lic}
+                  print(day,title,lic,flush=True)
+              except Exception as exc:
+                  errors.append({"day":day,"search":q,"reason":str(exc)[:220]})
+              time.sleep(.18)
+          (root/"DISCOVERED.json").write_text(json.dumps(reg,ensure_ascii=False,indent=2)+"\\n",encoding="utf8")
+          (root/"UNRESOLVED.json").write_text(json.dumps(errors,ensure_ascii=False,indent=2)+"\\n",encoding="utf8")
+          print("Saved",len(reg),"Unresolved",len(errors),flush=True)
+          
+          PY
+      - name: Commit icons and sources
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons
+          if ! git diff --cached --quiet; then
+            git commit -m "Cache more saint icons for November and December 2026"
+            git push
+          fi
