@@ -1,0 +1,69 @@
+name: Save Orthodox icons locally
+on:
+  push:
+    paths:
+      - '.github/workflows/cache-orthodox-icons.yml'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified icons from Wikimedia Commons
+        run: |
+          python -m pip install --quiet requests pillow
+          python - <<'PY'
+          import io, os, requests, json
+          from PIL import Image
+          from pathlib import Path
+          items={
+            "11-01":"Cosmas and Damian.jpg",
+            "11-08":"Icon of Archangel Michael.jpg",
+            "11-09":"Saint Nektarios of Aegina Icon.jpg",
+            "11-11":"Saint Menas with scenes from his life Tryavna 19th-century icon.jpg",
+            "12-04":"Saint Barbara. Orthodox icon.jpg",
+            "12-06":"Icon with Saint Nicholas.jpg",
+            "12-24":"Nativity of christ.jpg",
+            "12-25":"Nativity of christ.jpg",
+          }
+          api="https://commons.wikimedia.org/w/api.php"
+          session=requests.Session()
+          session.headers["User-Agent"]="OrthodoxCalendar/1.0 (icon asset caching)"
+          root=Path("icons")
+          root.mkdir(exist_ok=True)
+          report=[]
+          for day,name in items.items():
+            try:
+              q=session.get(api,params={"action":"query","format":"json","titles":"File:"+name,"prop":"imageinfo","iiprop":"url|extmetadata","iiurlwidth":360},timeout=20)
+              q.raise_for_status()
+              pages=q.json()["query"]["pages"]
+              page=next(iter(pages.values()))
+              if "missing" in page:
+                print("Missing Commons file:",name)
+                continue
+              info=page["imageinfo"][0]
+              image=session.get(info.get("thumburl",info["url"]),timeout=30)
+              image.raise_for_status()
+              picture=Image.open(io.BytesIO(image.content)).convert("RGB")
+              picture.thumbnail((360,480))
+              output=root/(day+".webp")
+              picture.save(output,format="WEBP",quality=82)
+              report.append({"day":day,"file":name,"source":"https://commons.wikimedia.org/wiki/File:"+name.replace(" ","_"),"license":info.get("extmetadata",{}).get("LicenseShortName",{}).get("value","See source")})
+              print("Downloaded",output,output.stat().st_size)
+            except Exception as exc:
+              print("FAILED",name,str(exc))
+          (root/"SOURCES.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
+          if not report: raise SystemExit("No images downloaded: check Commons connection and filenames")
+          PY
+      - name: Commit local image assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons
+          if ! git diff --cached --quiet; then
+            git commit -m "Cache Orthodox saint icons for reliable display"
+            git push
+          fi
