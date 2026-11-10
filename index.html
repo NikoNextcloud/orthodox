@@ -149,7 +149,7 @@ function setView(view){state.view=view;store('orthodox-view',view);render()}
 function badge(r){const b=node('span','badge '+r.fasting,FAST[r.fasting][0]);return b}
 function daySymbols(r){
  const out=[],level=String(r.feastLevel||''),name=String(r.feastName||'');
- if(/Господски/.test(level)||/Господне|Христово|Богоявление|Преображение|Възнесение|Сретение/.test(name)&&/Дванадесет|Велик/.test(level))out.push(['🕊️','Господски празник']);
+ if(/Господски/.test(level)||/Господен|Господне|Христово|Богоявление|Преображение|Възнесение|Сретение/.test(name)&&/Дванадесет|Велик/.test(level))out.push(['🕊️','Господски празник']);
  else if(/Велик|Дванадесет|Богородичен/.test(level))out.push(['⭐','Велик празник']);
  if(r.fasting==='fish')out.push(['🐟','Разрешена е риба']);
  else if(r.fasting==='strict')out.push(['🕯️','Строг пост']);
