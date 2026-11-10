@@ -38,7 +38,7 @@ jobs:
                       words=[w.lower() for w in re.findall(r"[a-zA-Z]{4,}",q) if w.lower() not in ("saint","saints","orthodox","icon","martyrs","the","and","of")]
                       for h in hits:
                           title=h["title"];tl=title.lower()
-                          if not re.search(r"\\.(jpg|jpeg|png|webp)$",tl):continue
+                          if not re.search(r"\.(jpg|jpeg|png|webp)$",tl):continue
                           if any(x in tl for x in ("church building","church of","monastery building","statue","photograph","reliquary","museum entrance","cathedral exterior","stamp")):continue
                           matches=sum(w in tl for w in words)
                           if matches<1:continue
