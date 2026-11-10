@@ -1,0 +1,32 @@
+{
+  "11-03": {
+    "name": "Pimen Zografski, painted by Simeon Molerov.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pimen_Zografski,_painted_by_Simeon_Molerov.jpg",
+    "asset": "icons/11-03.webp"
+  },
+  "11-26": {
+    "name": "16 Saint Stylianos Icon from Saint Paraskevi Church in Adam..jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:16_Saint_Stylianos_Icon_from_Saint_Paraskevi_Church_in_Adam..jpg",
+    "asset": "icons/11-26.webp"
+  },
+  "11-27": {
+    "name": "Archangels Chapel in Rila Monastery David of Bulgaria and Theodsius of Tarnovo - 1845.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Archangels_Chapel_in_Rila_Monastery_David_of_Bulgaria_and_Theodsius_of_Tarnovo_-_1845.jpg",
+    "asset": "icons/11-27.webp"
+  },
+  "11-28": {
+    "name": "Rila Mon. - Fresco mir. icon 008 Stephen the New.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Rila_Mon._-_Fresco_mir._icon_008_Stephen_the_New.jpg",
+    "asset": "icons/11-28.webp"
+  },
+  "12-18": {
+    "name": "Saint Modestus Icon from Saint George Church in Melissourgos.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Saint_Modestus_Icon_from_Saint_George_Church_in_Melissourgos.jpg",
+    "asset": "icons/12-18.webp"
+  },
+  "12-23": {
+    "name": "St Naum of Ohrid, Last Quarter of XIV Century, St Mary Perivleptos Church, Ohrid Icon Gallery.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:St_Naum_of_Ohrid,_Last_Quarter_of_XIV_Century,_St_Mary_Perivleptos_Church,_Ohrid_Icon_Gallery.jpg",
+    "asset": "icons/12-23.webp"
+  }
+}
