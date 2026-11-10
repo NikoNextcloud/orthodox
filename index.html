@@ -24,7 +24,7 @@ function fastRule(d){
  else if(a){period='Богородичен пост';fast=(dow===0||dow===6||dow===2||dow===4)?'oil':'nooil'}
  else if(n){period='Коледен пост';fast=(dow===0||dow===6)&&d<parse(y+'-12-20')?'fish':(dow===2||dow===4||dow===0||dow===6)?'oil':'nooil'}
  // Безпостна седмица след Митаря и фарисея, Светла седмица и след Петдесетница.
- if(delta>=-77&&delta<=-71||delta>=1&&delta<=7||delta>=50&&delta<=56||md>='25.12'&&d.getMonth()===11||d.getMonth()===0&&d.getDate()<=4){fast='free';period=null}
+ if(delta>=-69&&delta<=-63||delta>=1&&delta<=7||delta>=50&&delta<=56||md>='25.12'&&d.getMonth()===11||d.getMonth()===0&&d.getDate()<=4){fast='free';period=null}
  if(delta>=-55&&delta<=-49){fast='cheese';period='Сирна седмица';note='Без месо; млечни храни и яйца са позволени.'}
  if(md==='05.01'||md==='29.08'||md==='14.09'||md==='24.12'||delta===-2){fast='strict';note='Строг пост; подробностите се уточняват с духовник.'}
  if(md==='25.03'&&l||md==='06.08'||md==='21.11'&&n||md==='06.12'&&n||delta===-7){fast='fish';note='Празнично разрешение за риба.'}
