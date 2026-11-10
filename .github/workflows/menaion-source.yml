@@ -1,0 +1,48 @@
+name: Retrieve public domain Menaion icon panels
+on:
+  push:
+    paths:
+      - '.github/workflows/menaion-source.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet requests
+      - name: Fetch November and December 17th-century icon panels
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import quote
+          import requests,time
+          files={"november":"Menaion icon (17 c., TsAK) - November.jpg","december":"Menaion icon (17 c., TsAK) - December.jpg"}
+          root=Path("icons/source");root.mkdir(parents=True,exist_ok=True)
+          s=requests.Session();s.headers["User-Agent"]="OrthodoxCalendarResearch/1.0 (public domain icon crops)"
+          for month,filename in files.items():
+              url="https://commons.wikimedia.org/wiki/Special:FilePath/"+quote(filename)
+              dest=root/(month+".jpg")
+              if dest.exists():continue
+              for attempt in range(4):
+                  try:
+                      r=s.get(url,timeout=35);r.raise_for_status()
+                      if not r.headers.get("Content-Type","").startswith("image/"):raise Exception("Not an image")
+                      dest.write_bytes(r.content)
+                      print(month,len(r.content),flush=True)
+                      break
+                  except Exception as e:
+                      print(month,"attempt",attempt+1,str(e)[:180],flush=True)
+                      time.sleep(3+5*attempt)
+          
+          PY
+      - name: Commit source panels
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons/source
+          if ! git diff --cached --quiet; then
+            git commit -m "Add public domain November and December Menaion image sources"
+            git push
+          fi
