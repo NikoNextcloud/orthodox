@@ -231,7 +231,7 @@ function renderCountdowns(){
    return '<div class="count"><label>'+esc(label)+'</label><strong class="'+esc(style)+'">'+esc(big)+'</strong><span>'+esc(desc)+'</span></div>';
  }
  count.innerHTML=
-   card('До Великден',easterKey?distance(today,at(...easterKey.split('-').map(Number)):'—',easterKey||'извън обхвата')+
+   card('До Великден',easterKey?distance(today,at(...easterKey.split('-').map(Number))):'—',easterKey||'извън обхвата')+
    card('До Рождество',distance(today,christmas),shortDate(christmas))+
    card(current?'Текущ пост':'Предстоящ пост',season?season.name:'Няма данни',season?(current?'До '+shortDate(season.end):'Започва на '+shortDate(season.start)):'Извън обхвата','smallvalue')+
    card('Следващ голям празник',feastDate?shortDate(feastDate):'—',next?next.feastName:'Извън обхвата','datevalue')+
