@@ -1,0 +1,17 @@
+[
+  {
+    "day": "11-23",
+    "file": "Alexander Nevsky vita icon.jpg",
+    "error": "429 Client Error: Too many requests (f061ab2) for url: https://upload.wikimedia.org/wikipedia/commons/7/71/Alexander_Nevsky_vita_icon.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_conten"
+  },
+  {
+    "day": "11-24",
+    "file": "Icon of Saint Catherine.jpg",
+    "error": "429 Client Error: Too many requests (f061ab2) for url: https://upload.wikimedia.org/wikipedia/commons/d/d6/Icon_of_Saint_Catherine.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=o"
+  },
+  {
+    "day": "12-23",
+    "file": "St Naum of Ohrid, Last Quarter of XIV Century, St Mary Perivleptos Church, Ohrid Icon Gallery.jpg",
+    "error": "429 Client Error: Too many requests (f061ab2) for url: https://upload.wikimedia.org/wikipedia/commons/6/6b/St_Naum_of_Ohrid%2C_Last_Quarter_of_XIV_Century%2C_St_Mary_Perivleptos_Church%2C_Ohrid_Icon_G"
+  }
+]
