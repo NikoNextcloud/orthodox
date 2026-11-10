@@ -1,0 +1,53 @@
+name: Crop public-domain Menaion icons for daily saints
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/crop-menaion-icons.yml'
+permissions:
+  contents: write
+jobs:
+  crop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python -m pip install --quiet Pillow
+      - name: Crop exact annotated saint regions from 17th-century Menaion
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image,ImageOps
+          import json
+          CROPS={"11-10":[605,1226,162,793],"11-11":[923,1226,136,772],"11-12":[1429,1226,151,767],"11-13":[1732,1220,214,787],"11-14":[1946,1226,156,767],"11-15":[2238,1205,391,782],"11-16":[256,2003,219,772],"11-17":[469,2008,172,751],"11-18":[772,1987,203,777],"11-19":[1169,2003,177,782],"11-20":[1429,1997,136,777],"11-21":[1716,2003,709,772],"11-22":[2421,1997,183,761],"11-23":[2603,1997,183,751],"11-24":[506,2780,188,735],"11-25":[835,2790,172,714],"11-29":[2337,2764,94,782],"11-30":[2582,2769,188,772],"11-01":[240,428,381,798],"11-02":[626,428,313,793],"11-04":[1142,417,250,798],"11-05":[1388,428,376,782],"11-06":[1758,449,162,756],"11-07":[2050,459,104,767],"11-08":[2274,464,506,746],"12-10":[2439,464,167,746],"12-11":[2611,454,214,751],"12-12":[255,1205,198,787],"12-13":[443,1205,537,777],"12-14":[980,1205,318,782],"12-15":[1293,1199,167,793],"12-16":[1590,1220,146,756],"12-17":[1746,1226,641,777],"12-19":[907,1992,151,798],"12-21":[1261,1997,172,772],"12-22":[1579,1997,167,767],"12-24":[2085,2008,167,751],"12-25":[2262,1997,594,772],"12-26":[250,2764,563,782],"12-27":[813,2790,151,761],"12-28":[1100,2785,573,772],"12-29":[1668,2785,584,777],"12-30":[2423,2764,120,782],"12-31":[2679,2785,177,761],"12-01":[250,428,193,777],"12-03":[636,433,203,767],"12-04":[839,433,146,767],"12-05":[1173,438,136,741],"12-06":[1308,428,214,746],"12-07":[1511,422,203,751],"12-08":[1694,433,219,746],"12-09":[1902,438,532,782]}
+          base=Path('icons/source')
+          out=Path('icons');out.mkdir(exist_ok=True)
+          provenance={}
+          for month,name in [('11','november'),('12','december')]:
+              path=base/(name+'.jpg')
+              img=Image.open(path).convert('RGB')
+              expected=(3010,4000) if month=='11' else (3101,4000)
+              if img.size!=expected:raise RuntimeError(f'{name}: unexpected image size {img.size}')
+              for day,rect in CROPS.items():
+                  if not day.startswith(month):continue
+                  target=out/(day+'.webp')
+                  if target.exists():continue
+                  x,y,w,h=rect
+                  im=img.crop((x,y,x+w,y+h))
+                  im.thumbnail((360,480))
+                  im.save(target,'WEBP',quality=83)
+                  provenance[day]={'source':'https://commons.wikimedia.org/wiki/File:Menaion_icon_(17_c.,_TsAK)_-_'
+                    + ('November' if month=='11' else 'December')+'.jpg','rectangle':rect,'asset':'icons/'+day+'.webp','license':'Public Domain'}
+                  print(day,target.stat().st_size)
+          (out/'MENAION_CROPS.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2),encoding='utf8')
+          print('Generated',len(provenance),'new cropped icons')
+          
+          PY
+      - name: Commit icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icons
+          if ! git diff --cached --quiet; then
+            git commit -m "Add individual calendar saints from public-domain 17th-century Menaion"
+            git push
+          fi
