@@ -143,6 +143,109 @@ body:before{opacity:.22;background-image:repeating-linear-gradient(90deg,transpa
 .annual2027-note p{line-height:1.65;margin:8px 0}
 @media(max-width:640px){.annual2027{margin:22px 0 8px}.annual2027 summary{padding:15px;font-size:16px}.annual2027-inner{padding:0 12px 14px}.annual2027-grid{grid-template-columns:1fr;gap:12px}.annual2027-card,.annual2027-note{padding:14px}.annual2027 h3{font-size:18px}}
 
+
+/* Mobile legibility upgrade: spacious day cards, larger icons, readable captions, easy touch targets.
+   Desktop layout and all liturgical data remain unchanged. */
+@media(max-width:600px){
+  html{scroll-padding-top:86px;-webkit-text-size-adjust:100%}
+  body{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+  .shell{max-width:600px;padding:calc(76px + env(safe-area-inset-top)) 12px 30px}
+  .mobile-top{height:calc(68px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 7px 0;gap:0}
+  .mobile-top button{min-width:47px;min-height:52px;font-size:27px}
+  .mobile-period{font-size:clamp(22px,5.8vw,29px);font-weight:700;letter-spacing:.2px}
+  .mobile-hero{min-height:174px;padding:17px;gap:13px;border-radius:20px}
+  .hero-date{min-width:82px;padding-right:12px}
+  .hero-date small{font-size:13px;letter-spacing:1.5px}
+  .hero-date strong{font-size:78px}
+  .hero-date span{font-size:19px}
+  .hero-desc{gap:9px}
+  .hero-desc b{font-size:calc(22px * var(--size));line-height:1.22;-webkit-line-clamp:4;color:#f9e7c2}
+  .hero-desc small{font-size:calc(13px * var(--size));line-height:1.4;color:#e1caa4}
+  .hero-fast{font-size:calc(13px * var(--size));padding:7px 10px;font-weight:700;white-space:normal}
+  .countdowns{gap:11px;margin-top:14px;padding-bottom:9px}
+  .count{flex:0 0 158px;min-height:119px;padding:14px 12px;border-radius:15px}
+  .count label{font-size:calc(12px * var(--size));font-weight:700;line-height:1.3;letter-spacing:0}
+  .count strong{font-size:34px;line-height:1.2}
+  .count .smallvalue{font-size:calc(19px * var(--size));white-space:normal;overflow-wrap:anywhere}
+  .count strong.datevalue{font-size:calc(20px * var(--size));white-space:normal}
+  .count span{font-size:calc(12px * var(--size));line-height:1.4}
+  .legend{display:flex!important;flex-wrap:wrap!important;overflow:visible;gap:8px;margin:15px 0 13px}
+  .legend span{font-size:calc(12px * var(--size));font-weight:600;padding:9px 10px;white-space:normal;line-height:1.3}
+  .month-caption{font-size:30px;margin:7px 0 0;line-height:1.2}
+  .mobile-month-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:16px 2px 14px}
+  .mobile-month-switch{display:flex;gap:4px;padding:3px;border:1px solid #a17d47;border-radius:12px;background:#201008}
+  .mobile-month-switch button{border:0;border-radius:9px;background:transparent;color:#dfc398;font-size:13px;font-weight:700;min-height:43px;padding:9px 13px}
+  .mobile-month-switch button[aria-pressed="true"]{background:#b99851;color:#180905}
+  .mobile-month-list{display:flex;flex-direction:column;gap:11px}
+  .mobile-day-card{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:112px;text-align:left;border:1px solid #8f6936;border-left:4px solid #c9a84c;border-radius:15px;background:linear-gradient(110deg,#342015,#1b0d08 90%);padding:15px 12px;color:#f7e8ce;box-shadow:0 5px 15px #0003}
+  .mobile-day-card.today{outline:2px solid #f5d78a;outline-offset:2px}
+  .mobile-day-card.strict{border-left-color:#e67b70}
+  .mobile-day-card.oil{border-left-color:#e4a956}
+  .mobile-day-card.fish{border-left-color:#7dbef3}
+  .mobile-day-card.free{border-left-color:#89c99b}
+  .mobile-day-card.dispensation{border-left-color:#bd9aec}
+  .mobile-day-date{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;flex:0 0 43px;min-width:0;padding-top:2px}
+  .mobile-day-date strong{font:700 38px/1 'Cormorant Garamond',Georgia,serif;color:#ffe5a0}
+  .mobile-day-date span{font-size:12px;font-weight:700;color:#e3c89e;margin-top:5px}
+  .mobile-day-card .sainticon{flex:0 0 53px;width:53px;height:73px;min-width:53px;margin:0;border-radius:5px}
+  .mobile-day-card .sainticon.no-image{font-size:31px}
+  .mobile-day-main{display:flex;flex-direction:column;min-width:0;flex:1;gap:10px;padding-top:1px}
+  .mobile-day-title{display:block;font-size:calc(16px * var(--size));font-weight:600;line-height:1.45;overflow-wrap:anywhere;word-break:normal;color:#f7e8ce}
+  .mobile-day-fast{display:block;align-self:flex-start;font-size:calc(13px * var(--size));font-weight:700;line-height:1.35;border:1px solid #95713d;border-radius:9px;padding:6px 9px;background:#392217;color:#f2cf88}
+  .mobile-day-card:active{background:#452619}
+  .mobile-bottom{min-height:calc(75px + env(safe-area-inset-bottom));padding:0 4px env(safe-area-inset-bottom)}
+  .mobile-bottom button{min-height:72px;gap:4px;color:#e0c49e;font-size:calc(12px * var(--size));font-weight:700;letter-spacing:.1px}
+  .mobile-bottom .tabicon{font-size:28px}
+  .mobile-week-selector{gap:4px;margin:0 0 16px}
+  .mobile-week-selector button{min-height:69px;font-size:calc(12px * var(--size));font-weight:700;border-color:#8e713f}
+  .mobile-week-selector button b{font-size:27px}
+  .weekdetail .info,.singleday .info{padding:17px 15px;border-radius:17px}
+  .detailhero{gap:13px}
+  .detailhero .sainticon{width:70px;flex-basis:70px;height:92px}
+  .info h2{font-size:clamp(29px,8vw,38px);line-height:1.15}
+  .info h3{font-size:calc(24px * var(--size));line-height:1.28;overflow-wrap:anywhere}
+  .info p,.weekdetail .info p,.singleday .info p{font-size:calc(16px * var(--size));line-height:1.65;color:#f0ddbc}
+  .info .kicker{font-size:12px;line-height:1.4}
+  .detailmeta p,.detailmeta span{font-size:calc(14px * var(--size));line-height:1.5}
+  .fastbadge{font-size:calc(14px * var(--size));line-height:1.3}
+  .modal{max-height:94dvh;padding:14px 14px calc(18px + env(safe-area-inset-bottom))}
+  .modal .info{padding:10px 3px}
+  .modalnav{gap:8px}
+  .modalnav button{min-height:54px;font-size:calc(14px * var(--size));line-height:1.2;padding:9px}
+  .mobile-searchscreen h2{font-size:36px}
+  .mobile-searchscreen input{font-size:calc(17px * var(--size));padding:17px}
+  .suggestions button{font-size:calc(14px * var(--size));padding:12px 15px;min-height:44px}
+  .mobile-searchresults button{padding:15px 12px;min-height:81px}
+  .mobile-searchresults time{flex-basis:70px;font-size:calc(16px * var(--size))}
+  .mobile-searchresults .sdetails{font-size:calc(16px * var(--size));line-height:1.4;overflow-wrap:anywhere}
+  .mobile-searchresults small{font-size:calc(13px * var(--size));line-height:1.45}
+  .setting{font-size:calc(17px * var(--size));min-height:64px}
+  .panel .modalhead h2{font-size:26px}
+  .annual2027 summary{font-size:calc(18px * var(--size));line-height:1.35;padding:18px}
+  .annual2027-card li,.annual2027-note p{font-size:calc(16px * var(--size));line-height:1.65}
+  /* Optional compact grid: retain seven columns but prioritize legibility over miniature annotations. */
+  .monthgrid,.weekdaygrid{gap:4px}
+  .weekdaygrid div{font-size:12px;font-weight:700}
+  .day{min-height:120px!important;padding:6px 4px 8px;border-radius:9px}
+  .day .num{font-size:24px}
+  .day .saint{font-size:clamp(10px,2.6vw,13px)!important;line-height:1.22!important;-webkit-line-clamp:5!important;margin:6px 0 5px!important}
+  .day .mini{font-size:10px!important;line-height:1.2!important;overflow-wrap:anywhere}
+  .day .thumb.real-frame{width:23px!important;height:31px!important;flex-basis:23px!important}
+  .day .thumb.no-image{width:21px!important;height:28px!important;flex-basis:21px!important}
+  .day .moonmini{display:none}
+}
+@media(max-width:360px){
+  .shell{padding-left:8px;padding-right:8px}
+  .mobile-day-card{gap:8px;padding:13px 9px}
+  .mobile-day-date{flex-basis:39px}
+  .mobile-day-date strong{font-size:35px}
+  .mobile-day-card .sainticon{width:46px;flex-basis:46px;min-width:46px;height:65px}
+  .mobile-day-title{font-size:calc(15px * var(--size))}
+  .mobile-month-switch button{padding:8px 10px}
+  .mobile-period{font-size:20px}
+  .mobile-top button{min-width:43px}
+}
+
 </style>
 </head>
 <body>
@@ -351,6 +454,26 @@ function settingsUI(){const labels={showNamedays:'Имени дни',showTraditi
 async function shareDay(key){const d=getD(key),text=`${key} — ${d.feastName||'Православен календар'} · ${FAST[d.fasting][0]}`;try{if(navigator.share)await navigator.share({title:'Православен календар',text});else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert('Информацията за деня е копирана.')}else window.print()}catch(e){if(e.name!=='AbortError')window.print()}}
 function init(){renderCountdowns();settingsUI();applySettings();document.getElementById('previous').onclick=()=>nav(-1);document.getElementById('next').onclick=()=>nav(1);document.getElementById('today').onclick=goToToday;document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));document.getElementById('search').oninput=e=>handleSearch(e.target.value);document.getElementById('close').onclick=closeModal;document.getElementById('veil').addEventListener('click',e=>{if(e.target.id==='veil')closeModal()});document.getElementById('prevDay').onclick=()=>navigateDay(-1);document.getElementById('nextDay').onclick=()=>navigateDay(1);document.getElementById('share').onclick=()=>state.modalKey&&shareDay(state.modalKey);document.getElementById('settingsBtn').onclick=toggleSettings;document.getElementById('closePanel').onclick=toggleSettings;document.getElementById('candleBtn').onclick=toggleCandleMode;document.querySelectorAll('[data-font]').forEach(b=>b.onclick=()=>{settings.fontSize=b.dataset.font;applySettings()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();document.getElementById('panel').classList.remove('open')}else if(state.modalKey&&e.key==='ArrowLeft')navigateDay(-1);else if(state.modalKey&&e.key==='ArrowRight')navigateDay(1)});document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('results').innerHTML=''})}
 
+
+let mobileMonthLayout='list';
+try{mobileMonthLayout=localStorage.getItem('oc-mobile-month-layout')==='grid'?'grid':'list'}catch(e){}
+function renderMobileMonthList(current){
+ const y=current.getFullYear(),m=current.getMonth(),last=new Date(y,m+1,0).getDate();
+ let out='<div class="mobile-month-list" aria-label="Дни, празници и светци през месеца">';
+ for(let day=1;day<=last;day++){
+  const date=at(y,m+1,day),key=iso(date),x=getD(key);
+  const label=(x.dailyText2027||x.feastName||'Църковен ден').replace(/\.(?:строг пост|постен ден|сирна седмица|риба|пост)\s*$/i,'').trim();
+  const fast=FAST[x.fasting]?.[0]||'☦ Църковен ден';
+  out+=`<button class="mobile-day-card ${x.fasting} ${key===iso(new Date())?'today':''}" type="button" data-day="${key}" aria-label="${esc(formatDate(date))}, ${esc(label)}, ${esc(fast)}"><span class="mobile-day-date"><strong>${day}</strong><span>${esc(WEEKDAYS[date.getDay()].slice(0,3))}</span></span>${researchedIconHTML(key,true)}<span class="mobile-day-main"><span class="mobile-day-title">${esc(label)}</span><span class="mobile-day-fast">${esc(fast)}</span></span></button>`;
+ }
+ return out+'</div>';
+}
+function renderMobileMonth(current){
+ const label=MONTHS[current.getMonth()]+' '+current.getFullYear();
+ const controls=`<div class="mobile-month-heading"><h2 class="month-caption">${esc(label)}</h2><div class="mobile-month-switch" role="group" aria-label="Изглед за месеца"><button type="button" data-mobile-month-layout="list" aria-pressed="${mobileMonthLayout==='list'}">Списък</button><button type="button" data-mobile-month-layout="grid" aria-pressed="${mobileMonthLayout==='grid'}">Календар</button></div></div>`;
+ return controls+(mobileMonthLayout==='list'?renderMobileMonthList(current):renderMonthView());
+}
+
 const originalRender=render;
 function mobileRender(){
  if(innerWidth>600){originalRender();return}
@@ -361,7 +484,8 @@ function mobileRender(){
  document.querySelector('.countdowns').style.display=v==='month'?'flex':'none';
  document.querySelector('.legend').style.display=v==='month'?'flex':'none';
  if(v==='month'){
-  root.innerHTML=`<div class="month-caption">${MONTHS[d.getMonth()]} ${d.getFullYear()}</div>`+renderMonthView();
+  root.innerHTML=renderMobileMonth(d);
+  root.querySelectorAll('[data-mobile-month-layout]').forEach(b=>b.addEventListener('click',()=>{mobileMonthLayout=b.dataset.mobileMonthLayout;try{localStorage.setItem('oc-mobile-month-layout',mobileMonthLayout)}catch(e){}render()}));
  }else if(v==='week'){
   const mon=add(d,-((d.getDay()+6)%7)),sel=iso(d);
   root.innerHTML='<div class="mobile-week-selector">'+Array.from({length:7},(_,i)=>{const date=add(mon,i);return `<button data-weekday="${iso(date)}" class="${iso(date)===sel?'active':''}">${['Н','П','В','С','Ч','П','С'][date.getDay()]}<b>${date.getDate()}</b></button>`}).join('')+'</div><div class="weekdetail">'+detailHTML(sel)+'</div>';
@@ -405,7 +529,7 @@ function initializeMobile(){
 }
 
 init();
-initializeMobile();
+document.addEventListener('DOMContentLoaded',()=>{initializeMobile();render();});
 </script>
 <nav class="mobile-bottom" aria-label="Основни раздели"><button data-mobile-tab="month" class="active"><span class="tabicon">▦</span><span>Месец</span></button><button data-mobile-tab="week"><span class="tabicon">▤</span><span>Седмица</span></button><button data-mobile-tab="day"><span class="tabicon">☩</span><span>Днес</span></button><button data-mobile-tab="search"><span class="tabicon">⌕</span><span>Търсене</span></button></nav></body>
 </html>
