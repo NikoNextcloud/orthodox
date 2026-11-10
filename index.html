@@ -207,14 +207,14 @@ function daySymbols(r){
 }
 
 const SAINT_ICON_FILES={
- "11-01":"Cosmas_and_Damian.jpg",
- "11-08":"Icon_of_Archangel_Michael.jpg",
- "11-09":"Saint_Nektarios_of_Aegina_Icon.jpg",
- "11-11":"Saint_Menas_with_scenes_from_his_life_Tryavna_19th-century_icon.jpg",
- "12-04":"Saint_Barbara._Orthodox_icon.jpg",
- "12-06":"Icon_with_Saint_Nicholas.jpg",
- "12-24":"Nativity_of_christ.jpg",
- "12-25":"Nativity_of_christ.jpg"
+ "11-01":"Cosmas and Damian.jpg",
+ "11-08":"Icon of Archangel Michael.jpg",
+ "11-09":"Saint Nektarios of Aegina Icon.jpg",
+ "11-11":"Saint Menas with scenes from his life Tryavna 19th-century icon.jpg",
+ "12-04":"Saint Barbara. Orthodox icon.jpg",
+ "12-06":"Icon with Saint Nicholas.jpg",
+ "12-24":"Nativity of christ.jpg",
+ "12-25":"Nativity of christ.jpg"
 };
 function iconFilenameFor(r){
  if(!r||!r.iso)return null;
@@ -223,11 +223,21 @@ function iconFilenameFor(r){
 function orthodoxIcon(r,cls){
  const name=iconFilenameFor(r);if(!name)return null;
  const img=document.createElement("img");img.className="orthodox-image "+cls;
- img.src="https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(name)+"?width=240";
+ const day=r.iso.slice(5);
+ img.src="./icons/"+day+".webp";
  img.alt="Православна икона: "+r.feastName;
- img.title="Изображение от Wikimedia Commons";
- img.loading="lazy";img.decoding="async";img.referrerPolicy="no-referrer";
- img.addEventListener("error",()=>{const fail=document.createElement("span");fail.className="orthodox-image fallback "+cls;fail.textContent="☩";fail.setAttribute("aria-label","Иконата е недостъпна офлайн");img.replaceWith(fail)},{once:true});
+ img.title="Изображение: Wikimedia Commons, съхранено локално";
+ img.loading="lazy";img.decoding="async";
+ img.addEventListener("error",()=>{
+   if(img.dataset.retry!=="1"){
+     img.dataset.retry="1";
+     img.src="https://commons.wikimedia.org/wiki/Special:Redirect/file/"+encodeURIComponent(name)+"?width=240";
+   }else{
+     const fail=document.createElement("span");fail.className="orthodox-image fallback "+cls;fail.textContent="☩";
+     fail.setAttribute("aria-label","Не е намерена проверена икона за този ден");
+     img.replaceWith(fail);
+   }
+ });
  return img;
 }
 
