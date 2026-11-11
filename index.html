@@ -544,6 +544,72 @@ body.candle-preview .app{background:#100604}
   -webkit-print-color-adjust:exact!important;
  }
 }
+
+/* Print finishing: continuous line under the first calendar week, tiny saint icons,
+   no extra heading or footer metadata; no festival color legend in print. */
+@media print {
+ .print-sheet .print-title,.print-details .print-title{justify-content:flex-start!important}
+ .print-sheet .print-grid,.print-details .print-grid{
+  isolation:isolate!important;position:relative!important;
+  overflow:hidden!important;
+ }
+ .print-sheet .print-row-rules,.print-details .print-row-rules{
+  position:absolute!important;inset:0!important;z-index:6!important;
+  box-sizing:border-box!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:repeat(var(--print-weeks,6),minmax(0,1fr))!important;
+  width:100%!important;height:100%!important;
+  margin:0!important;padding:0!important;
+  pointer-events:none!important;background:transparent!important;
+ }
+ .print-sheet .print-row-rule,.print-details .print-row-rule{
+  display:block!important;box-sizing:border-box!important;
+  width:100%!important;min-height:0!important;
+  margin:0!important;padding:0!important;
+  border:0!important;border-bottom:1.25px solid #39352f!important;
+  background:transparent!important;
+  -webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;
+ }
+ .print-sheet .print-day-head,.print-details .print-day-head{
+  display:flex!important;justify-content:space-between!important;
+  align-items:flex-start!important;flex:0 0 auto!important;
+  min-height:8.4mm!important;max-height:9.5mm!important;
+  width:100%!important;gap:1mm!important;
+ }
+ .print-sheet .print-mini-icon,.print-details .print-mini-icon{
+  display:flex!important;position:relative!important;
+  width:8mm!important;height:8.4mm!important;min-width:8mm!important;
+  flex:0 0 8mm!important;align-items:center!important;justify-content:center!important;
+  overflow:hidden!important;background:transparent!important;
+ }
+ .print-sheet .print-mini-cross,.print-details .print-mini-cross{
+  font:700 18pt/1 Georgia,serif!important;color:#897963!important;
+ }
+ .print-sheet .print-mini-icon img,.print-details .print-mini-icon img{
+  display:block!important;position:absolute!important;inset:0!important;
+  width:100%!important;height:100%!important;object-fit:contain!important;
+  background:#fff!important;border:0!important;box-shadow:none!important;
+ }
+ .print-sheet .print-day.fast-span::after,.print-details .print-day.fast-span::after{
+  width:3.1mm!important;height:3.1mm!important;z-index:4!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-head,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-head{
+  min-height:6.7mm!important;max-height:7.1mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-mini-icon,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-mini-icon{
+  width:6.5mm!important;height:6.5mm!important;min-width:6.5mm!important;flex-basis:6.5mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-mini-cross,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-mini-cross{
+  font-size:14pt!important;
+ }
+ .print-sheet .print-credits,.print-details .print-credits{display:none!important}
+}
+/* Browser-generated page date, address, page number and running title are
+   controlled by the browser's "Headers and footers" print setting, not by CSS. */
+
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -838,22 +904,41 @@ function buildPrint(){
    const level=value.length>150?' very-long':value.length>100?' long':value.length>64?' medium':'';
    const fasting=String(getStatus(k)[0]).replace(/^[^ ]+ /,'');
    const classes='print-day'+(weekday===0?' sunday':'')+(fast?' fast-span fast-'+fast[3]:'')+(detailed?' detailed':'');
+   const firstIcon=iconCandidates(k)[0];
+   const printIcon='<span class="print-mini-icon"><span class="print-mini-cross" aria-hidden="true">☦</span>'+
+    (firstIcon?'<img src="'+esc(firstIcon.src)+'" alt="" loading="eager" decoding="async" data-saint-date="'+esc(k)+'" data-saint-index="0">':'')+'</span>';
    days.push('<div class="'+classes+'">'+
-    '<strong class="print-day-number">'+number+'</strong>'+
+    '<div class="print-day-head"><strong class="print-day-number">'+number+'</strong>'+printIcon+'</div>'+
     '<div class="print-day-name'+level+'">'+esc(value)+'</div>'+
     '<div class="print-day-status">'+esc(fasting)+'</div>'+
    '</div>');
   }
   while(days.length<weeks*7)days.push('<div class="print-day empty" aria-hidden="true"></div>');
-  return '<div class="print-title"><h1>☦ '+esc(MONTHS[m])+' '+y+'</h1><small>'+(detailed?'ПОДРОБЕН ПРАВОСЛАВЕН КАЛЕНДАР':'ПРАВОСЛАВЕН КАЛЕНДАР')+'</small></div>'+
+  return '<div class="print-title"><h1>☦ '+esc(MONTHS[m])+' '+y+'</h1></div>'+
    '<div class="print-week">'+headers.map(label=>'<span>'+esc(label)+'</span>').join('')+'</div>'+
-   '<div class="print-grid" style="--print-weeks:'+weeks+'">'+days.join('')+'<div class="print-column-rules" aria-hidden="true">'+Array.from({length:7},()=>'<span class="print-column-rule"></span>').join('')+'</div>'+'</div>'+
-   '<div class="print-credits"><span>☦ '+(detailed?'Подробни чествания и постни правила':'Светци, празници и постни дни')+'</span><span>Православен календар · '+y+' г.</span></div>';
+   '<div class="print-grid" style="--print-weeks:'+weeks+'">'+days.join('')+
+   '<div class="print-column-rules" aria-hidden="true">'+Array.from({length:7},()=>'<span class="print-column-rule"></span>').join('')+'</div>'+
+   '<div class="print-row-rules" aria-hidden="true">'+Array.from({length:weeks},()=>'<span class="print-row-rule"></span>').join('')+'</div>'+
+   '</div>';
  }
  ele('printSheet').innerHTML=calendarSheet(false);
  ele('printDetails').innerHTML=calendarSheet(true);
 }
-function printMonth(detailed){closeSheets();buildPrint();document.body.classList.remove('print-fasts');document.body.classList.toggle('print-full',detailed);window.print()}
+async function printMonth(detailed){
+ closeSheets();buildPrint();
+ document.body.classList.remove('print-fasts');
+ document.body.classList.toggle('print-full',detailed);
+ const active=ele(detailed?'printDetails':'printSheet');
+ const images=Array.from(active.querySelectorAll('.print-mini-icon img'));
+ await Promise.race([
+  Promise.allSettled(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
+   img.addEventListener('load',resolve,{once:true});
+   img.addEventListener('error',resolve,{once:true});
+  }))),
+  new Promise(resolve=>setTimeout(resolve,5500))
+ ]);
+ window.print();
+}
 function printFasts2027(){
  closeSheets();
  ele('printFastsSheet').innerHTML='<h1>☦ Задушници и пости през 2027 г.</h1>'+ele('annualGuideContent').innerHTML+'<p class="print-fasts-credit">Български православен календар · Справочна информация за 2027 г.</p>';
