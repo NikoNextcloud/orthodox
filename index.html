@@ -238,43 +238,41 @@ body.candle-preview .app{background:#100604}
 [hidden]{display:none!important}
 @media(max-width:600px){.section-label{flex-wrap:wrap}.year-switch{margin-left:auto}.year-switch button{padding:7px 10px}}
 
-/* Multiday fasting periods: an independent visual layer, never a replacement for feast colors. */
+/* Fasting periods: a small independent top-right corner; preserve the original day cards and feast dots. */
 @media screen {
- .fast-lent{--fast-accent:#c391d8;--fast-wash:#422846;--fast-text:#f0d2fa}
- .fast-apostles{--fast-accent:#69b4c7;--fast-wash:#203c45;--fast-text:#c8ebf3}
- .fast-dormition{--fast-accent:#77a4e0;--fast-wash:#233550;--fast-text:#d0e3ff}
- .fast-nativity{--fast-accent:#d8a46a;--fast-wash:#45301d;--fast-text:#f3d5a7}
+ .fast-lent{--fast-accent:#9953b9;--fast-wash:#422846;--fast-text:#edcdfb}
+ .fast-apostles{--fast-accent:#268ca8;--fast-wash:#203c45;--fast-text:#c8ebf3}
+ .fast-dormition{--fast-accent:#567bd1;--fast-wash:#233550;--fast-text:#d0e3ff}
+ .fast-nativity{--fast-accent:#c56649;--fast-wash:#45301d;--fast-text:#f3d5a7}
  .fast-period-banner{display:grid;gap:7px;margin:4px 0 14px}
  .fast-period-summary{display:flex;flex-wrap:wrap;align-items:center;column-gap:12px;row-gap:4px;padding:12px 14px;border-left:5px solid var(--fast-accent);border-top:1px solid #86633e66;border-right:1px solid #86633e66;border-bottom:1px solid #86633e66;border-radius:7px;background:linear-gradient(100deg,var(--fast-wash),#25140e 92%);box-shadow:inset 0 1px #fff1,0 4px 12px #0003}
  .fast-period-name{color:var(--fast-text);font:700 18px/1.1 'Cormorant Garamond',Georgia,serif}
  .fast-period-dates{color:#f3dfbc;font:650 12px/1.45 Raleway,Arial,sans-serif}
  .fast-period-length{margin-left:auto;border:1px solid var(--fast-accent);border-radius:99px;padding:3px 8px;color:var(--fast-text);white-space:nowrap;font:700 10px Raleway,Arial,sans-serif}
  .fast-period-explain{margin:0 1px;color:#bda785;font:500 10px/1.4 Raleway,Arial,sans-serif}
- .day-card.fast-span{background:linear-gradient(145deg,var(--fast-wash) 0%,#2c1a14 84%);border-color:var(--fast-accent);box-shadow:inset 5px 0 var(--fast-accent),inset 0 1px #f8dea51a,0 5px 11px #0005;padding-left:12px}
- .day-card.fast-span.selected{background:linear-gradient(145deg,var(--fast-wash),#51301b 87%);border:2px solid #f0c96a;box-shadow:inset 5px 0 var(--fast-accent),0 0 0 2px #cba95842,0 7px 23px #cba9582e}
- .day-card.fast-span .fast-label{color:#ecd6b4}
- .day-card .fast-period-label{display:block;max-width:100%;flex:0 0 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:4px;padding:2px 4px;background:#140a0899;border:1px solid var(--fast-accent);color:var(--fast-text);font:700 9px/1.25 Raleway,Arial,sans-serif}
- .day-card.fast-start .fast-period-label,.day-card.fast-end .fast-period-label{background:var(--fast-accent);color:#160d09}
- .week-cell.fast-week{border-bottom:3px solid var(--fast-accent);background:linear-gradient(175deg,var(--fast-wash),#26150e 89%)}
- .week-cell.fast-week[aria-current="date"]{border-bottom:3px solid var(--fast-accent);background:linear-gradient(155deg,#f3d281,#cba14d 56%,#a97927 100%)}
+ /* The triangle is clipped by the already rounded card border. No card background or border override. */
+ .day-card.fast-span::after{content:"";position:absolute;top:0;right:0;width:25px;height:25px;background:var(--fast-accent);clip-path:polygon(0 0,100% 0,100% 100%);pointer-events:none;z-index:2}
+ /* Keep liturgical feast dot visible below the corner, without shifting the date text. */
+ .day-card.fast-span .card-top-right{transform:translateY(18px)}
  .detail-fast-period{margin:12px 0 5px;padding:10px 12px;border-left:4px solid var(--fast-accent);border-radius:5px;background:var(--fast-wash);color:var(--fast-text);font:650 12px/1.45 Raleway,Arial,sans-serif}
 }
 @media screen and (max-width:699px){
  .fast-period-summary{padding:10px 11px;column-gap:8px}
  .fast-period-name{font-size:17px}
  .fast-period-dates{font-size:11px}
- .day-card.fast-span{padding-left:10px}
 }
 @media screen and (max-width:355px){
- .day-card .fast-period-label{font-size:8px;padding:2px}
  .fast-period-length{font-size:9px}
+ .day-card.fast-span::after{width:21px;height:21px}
+ .day-card.fast-span .card-top-right{transform:translateY(17px)}
 }
 @media print{
- .print-day.fast-span{border-left:1.4mm solid var(--fast-accent);background:#f7f1eb}
- .print-day.fast-lent{--fast-accent:#a575b4}
- .print-day.fast-apostles{--fast-accent:#488c9b}
- .print-day.fast-dormition{--fast-accent:#5788c0}
- .print-day.fast-nativity{--fast-accent:#ae7e44}
+ .print-day.fast-span{position:relative}
+ .print-day.fast-span::after{content:"";position:absolute;right:0;top:0;width:6mm;height:6mm;background:var(--fast-accent);clip-path:polygon(0 0,100% 0,100% 100%)}
+ .print-day.fast-lent{--fast-accent:#9953b9}
+ .print-day.fast-apostles{--fast-accent:#268ca8}
+ .print-day.fast-dormition{--fast-accent:#567bd1}
+ .print-day.fast-nativity{--fast-accent:#c56649}
 }
 
 </style></head><body>
@@ -363,7 +361,7 @@ function renderFastBanner(){
  const start=keyFor(new Date(y,m,1,12)),end=keyFor(new Date(y,m+1,0,12));
  const periods=FAST_PERIODS.filter(p=>p[0]<=end&&p[1]>=start);
  const target=ele('fastPeriodBanner');target.hidden=!periods.length;
- target.innerHTML=periods.map(p=>'<div class="fast-period-summary fast-'+p[3]+'"><span class="fast-period-name">☦ '+esc(p[2])+'</span><span class="fast-period-dates">'+esc(fastRange(p))+'</span><span class="fast-period-length">'+fastDayCount(p)+' дни</span></div>').join('')+(periods.length?'<p class="fast-period-explain">Цветният кант обхваща всички дни от поста. Цветните точки показват вида празник.</p>':'');
+ target.innerHTML=periods.map(p=>'<div class="fast-period-summary fast-'+p[3]+'"><span class="fast-period-name">☦ '+esc(p[2])+'</span><span class="fast-period-dates">'+esc(fastRange(p))+'</span><span class="fast-period-length">'+fastDayCount(p)+' дни</span></div>').join('')+(periods.length?'<p class="fast-period-explain">Цветният ъгъл горе вдясно обозначава всеки ден от поста. Кръглите точки обозначават празниците.</p>':'');
 }
 
 const firstDay=new Date(),firstKey=keyFor(firstDay);let selected=DATA[firstKey]?firstKey:'2026-11-11';
@@ -372,8 +370,8 @@ function selectDate(k){if(!DATA[k])return;selected=k;render()}
 function moveDay(n){const d=fromKey(selected);d.setDate(d.getDate()+n);if(inScope(d))selectDate(keyFor(d));}
 function moveWeek(n){const d=fromKey(selected);d.setDate(d.getDate()+n*7);if(inScope(d))selectDate(keyFor(d));else selectDate(n<0?'2025-01-01':'2027-12-31')}
 function moveMonth(n){const d=fromKey(selected),target=new Date(d.getFullYear(),d.getMonth()+n,1,12);if(!inScope(target))return;const day=Math.min(d.getDate(),new Date(target.getFullYear(),target.getMonth()+1,0).getDate());selectDate(keyFor(new Date(target.getFullYear(),target.getMonth(),day,12)));}
-function weekdayStrip(){const d=fromKey(selected),mon=new Date(d);mon.setDate(d.getDate()-((d.getDay()+6)%7));return Array.from({length:7},(_,i)=>{const dt=new Date(mon);dt.setDate(mon.getDate()+i);const k=keyFor(dt);const active=k===selected,fast=fastPeriodAt(k);return `<button class="week-cell${inScope(dt)?'':' is-outside'}${fast?' fast-week fast-'+fast[3]:''}" type="button" data-date="${k}" ${inScope(dt)?'':'disabled'} ${active?'aria-current="date"':''} aria-label="${esc(WEEK[dt.getDay()])}, ${dt.getDate()} ${esc(MONTHS[dt.getMonth()])}"><span>${SHORT[dt.getDay()]}</span><strong>${dt.getDate()}</strong></button>`}).join('')}
-function monthGrid(){const date=fromKey(selected),m=date.getMonth(),y=date.getFullYear(),length=new Date(y,m+1,0).getDate();return Array.from({length},(_,i)=>{const k=`${y}-${pad(m+1)}-${pad(i+1)}`,st=getStatus(k),label=titleFor(k),weekday=fromKey(k).getDay(),shortDay=['Нед','Пон','Вт','Ср','Чет','Пет','Съб'][weekday];const fast=fastPeriodAt(k),fastLabel=fast?(k===fast[0]&&k===fast[1]?'Начало и край · ':k===fast[0]?'Начало · ':k===fast[1]?'Край · ':'')+fast[2]:'';return `<button type="button" class="day-card${k===selected?' selected':''}${fast?' fast-span fast-'+fast[3]:''}${fast&&k===fast[0]?' fast-start':''}${fast&&k===fast[1]?' fast-end':''}" data-day="${k}" aria-label="${esc(String(i+1)+' '+MONTHS[m]+', '+WEEK[weekday]+', '+label+', '+st[0]+', '+feastMeta(k).name+(fast?', '+fastDescription(fast,k):''))}"><div class="card-top"><span class="card-date"><b>${i+1}</b><span class="card-weekday" title="${WEEK[weekday]}">${shortDay}</span></span>${feastBadgeHTML(k)}</div>${iconMarkup(k,'day-icon')}<span class="day-title">${esc(label)}</span><span class="fast-label">${esc(st[0])}</span>${fast?'<span class="fast-period-label" title="'+esc(fastDescription(fast,k))+'">'+esc(fastLabel)+'</span>':''}</button>`}).join('')}
+function weekdayStrip(){const d=fromKey(selected),mon=new Date(d);mon.setDate(d.getDate()-((d.getDay()+6)%7));return Array.from({length:7},(_,i)=>{const dt=new Date(mon);dt.setDate(mon.getDate()+i);const k=keyFor(dt);const active=k===selected;return `<button class="week-cell${inScope(dt)?'':' is-outside'}" type="button" data-date="${k}" ${inScope(dt)?'':'disabled'} ${active?'aria-current="date"':''} aria-label="${esc(WEEK[dt.getDay()])}, ${dt.getDate()} ${esc(MONTHS[dt.getMonth()])}"><span>${SHORT[dt.getDay()]}</span><strong>${dt.getDate()}</strong></button>`}).join('')}
+function monthGrid(){const date=fromKey(selected),m=date.getMonth(),y=date.getFullYear(),length=new Date(y,m+1,0).getDate();return Array.from({length},(_,i)=>{const k=`${y}-${pad(m+1)}-${pad(i+1)}`,st=getStatus(k),label=titleFor(k),weekday=fromKey(k).getDay(),shortDay=['Нед','Пон','Вт','Ср','Чет','Пет','Съб'][weekday];const fast=fastPeriodAt(k);return `<button type="button" class="day-card${k===selected?' selected':''}${fast?' fast-span fast-'+fast[3]:''}${fast&&k===fast[0]?' fast-start':''}${fast&&k===fast[1]?' fast-end':''}" data-day="${k}" ${fast?'title="'+esc(fastDescription(fast,k))+'"':''} aria-label="${esc(String(i+1)+' '+MONTHS[m]+', '+WEEK[weekday]+', '+label+', '+st[0]+', '+feastMeta(k).name+(fast?', '+fastDescription(fast,k):''))}"><div class="card-top"><span class="card-date"><b>${i+1}</b><span class="card-weekday" title="${WEEK[weekday]}">${shortDay}</span></span>${feastBadgeHTML(k)}</div>${iconMarkup(k,'day-icon')}<span class="day-title">${esc(label)}</span><span class="fast-label">${esc(st[0])}</span></button>`}).join('')}
 function render(){const d=fromKey(selected);ele('weekStrip').innerHTML=weekdayStrip();ele('fullDate').textContent=WEEK[d.getDay()]+', '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' г.';ele('dateSubtitle').textContent=titleFor(selected);ele('monthMarker').textContent=MONTHS[d.getMonth()]+' '+d.getFullYear();ele('monthGrid').innerHTML=monthGrid();renderFastBanner();ele('monthPicker').value=String(d.getMonth());ele('yearPicker').value=String(d.getFullYear());ele('prevMonth').disabled=d.getFullYear()===2025&&d.getMonth()===0;ele('nextMonth').disabled=d.getFullYear()===2027&&d.getMonth()===11;ele('annual2027').hidden=d.getFullYear()!==2027;document.querySelectorAll('[data-jump-year]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.jumpYear)===d.getFullYear())));ele('feastLegend').innerHTML=buildFeastLegend();}
 function openDetail(k){selectDate(k);const d=fromKey(k);ele('detailDate').textContent=WEEK[d.getDay()]+', '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' г.';ele('detailTitle').textContent='Светци и празници';ele('detailIcon').outerHTML=iconMarkup(k,'sheet-icon').replace('class="sheet-icon"','class="sheet-icon" id="detailIcon"');ele('detailFeastType').innerHTML=feastChipHTML(k);ele('detailFast').textContent=getStatus(k)[0];const period=fastPeriodAt(k),periodLine=ele('detailFastPeriod');periodLine.hidden=!period;periodLine.className='detail-fast-period'+(period?' fast-'+period[3]:'');periodLine.textContent=period?fastDescription(period,k):'';ele('detailText').textContent=DATA[k].text;ele('detailShade').classList.add('open');ele('prevDay').disabled=k==='2025-01-01';ele('nextDay').disabled=k==='2027-12-31';}
 function closeSheets(){ele('detailShade').classList.remove('open');ele('menuShade').classList.remove('open')}
