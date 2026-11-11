@@ -430,6 +430,118 @@ body.candle-preview .app{background:#100604}
   display:block;margin-top:.5mm;font:6.4pt/1.12 Arial,sans-serif
  }
 }
+
+/* Classic wall-calendar print: contiguous 7-column ruled table, not separate rounded cards. */
+@media print {
+ body:not(.print-full):not(.print-fasts) .print-sheet{
+  background:#fff!important;
+  color:#1f1c18!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-title{
+  border-bottom:2px solid #4e463b!important;
+  margin-bottom:3mm!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-title h1{
+  color:#2b2620!important;
+  font:700 23pt/1.1 Georgia,serif!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-title small{
+  color:#554e43!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-week{
+  gap:0!important;
+  border-top:1.3px solid #3f3a32!important;
+  border-left:1.3px solid #3f3a32!important;
+  border-bottom:0!important;
+  margin:0!important;
+  background:#f0eee9!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-week span{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:7mm;
+  margin:0!important;
+  padding:.9mm .5mm!important;
+  border-right:1.3px solid #3f3a32!important;
+  border-bottom:1.3px solid #3f3a32!important;
+  background:#eeece7!important;
+  color:#27221e!important;
+  font:700 8pt/1.1 Arial,sans-serif!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-grid{
+  gap:0!important;
+  border:0!important;
+  border-left:1.3px solid #3f3a32!important;
+  background:#fff!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-day,
+ body:not(.print-full):not(.print-fasts) .print-day.empty{
+  box-sizing:border-box!important;
+  min-width:0;
+  margin:0!important;
+  padding:1.25mm 1.35mm!important;
+  border:0!important;
+  border-right:1.3px solid #3f3a32!important;
+  border-bottom:1.3px solid #3f3a32!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  gap:.7mm!important;
+  break-inside:avoid;
+ }
+ body:not(.print-full):not(.print-fasts) .print-day.empty{
+  background:#f7f7f6!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-day b{
+  display:block;
+  flex:0 0 auto;
+  color:#26221d!important;
+  font:700 13pt/1.05 Georgia,serif!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-day .name{
+  display:block;
+  flex:1 1 auto;
+  min-height:0;
+  overflow:hidden!important;
+  overflow-wrap:anywhere;
+  color:#2f2b25!important;
+  font:6.9pt/1.13 Arial,sans-serif!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-day .state{
+  flex:0 0 auto;
+  align-self:stretch;
+  margin-top:auto;
+  padding:.35mm .5mm!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#f2f1ee!important;
+  color:#484238!important;
+  font:600 6pt/1.08 Arial,sans-serif!important;
+ }
+ /* When the month spans six weeks, keep every line comfortably inside A4. */
+ body:not(.print-full):not(.print-fasts) .print-grid[style*="--print-weeks:6"] .print-day{
+  padding:.95mm 1.1mm!important;
+  gap:.45mm!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-grid[style*="--print-weeks:6"] .print-day b{
+  font-size:11.5pt!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-grid[style*="--print-weeks:6"] .print-day .name{
+  font-size:6.5pt!important;
+  line-height:1.1!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-grid[style*="--print-weeks:6"] .print-day .state{
+  font-size:5.8pt!important;
+ }
+ body:not(.print-full):not(.print-fasts) .print-credits{
+  border-top:1px solid #a19a90;
+  color:#5b554d!important;
+  margin-top:1.8mm!important;
+ }
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
