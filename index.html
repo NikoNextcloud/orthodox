@@ -610,6 +610,92 @@ body.candle-preview .app{background:#100604}
 /* Browser-generated page date, address, page number and running title are
    controlled by the browser's "Headers and footers" print setting, not by CSS. */
 
+
+/* Larger, clearer A4 print typography in both calendar print modes.
+   Adaptive long-text classes preserve room for complete saints' names. */
+@media print {
+ .print-sheet .print-title h1,.print-details .print-title h1 {
+  font-size:29pt!important;line-height:1.04!important;
+ }
+ .print-sheet .print-week span,.print-details .print-week span {
+  font-size:10.2pt!important;line-height:1.12!important;
+  font-weight:700!important;min-height:8.8mm!important;
+ }
+ .print-sheet .print-day,.print-details .print-day {
+  gap:.75mm!important;padding:1.4mm 1.5mm!important;
+ }
+ .print-sheet .print-day-head,.print-details .print-day-head {
+  min-height:10mm!important;max-height:10.3mm!important;
+  align-items:flex-start!important;
+ }
+ .print-sheet .print-day-number,.print-details .print-day-number {
+  font-size:19pt!important;line-height:1.05!important;font-weight:700!important;
+ }
+ .print-sheet .print-mini-icon,.print-details .print-mini-icon{
+  width:9mm!important;height:9mm!important;
+  min-width:9mm!important;flex-basis:9mm!important;
+ }
+ .print-sheet .print-mini-cross,.print-details .print-mini-cross{font-size:21pt!important}
+ .print-sheet .print-day-name,.print-details .print-day-name {
+  font-size:10.1pt!important;line-height:1.16!important;
+ }
+ .print-sheet .print-day-name.medium,.print-details .print-day-name.medium {
+  font-size:9.35pt!important;line-height:1.14!important;
+ }
+ .print-sheet .print-day-name.long,.print-details .print-day-name.long {
+  font-size:8.45pt!important;line-height:1.13!important;
+ }
+ .print-sheet .print-day-name.very-long,.print-details .print-day-name.very-long {
+  font-size:7.55pt!important;line-height:1.11!important;
+ }
+ .print-sheet .print-day-status,.print-details .print-day-status {
+  font-size:8.25pt!important;line-height:1.12!important;
+  padding:.55mm .7mm!important;
+ }
+ /* Six-week months have shorter rows: keep numbers prominent, text readable. */
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day{
+  padding:1mm 1.15mm!important;gap:.4mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-head,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-head{
+  min-height:8.15mm!important;max-height:8.4mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-number,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-number{
+  font-size:16.5pt!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-mini-icon,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-mini-icon{
+  width:7.5mm!important;height:7.5mm!important;
+  min-width:7.5mm!important;flex-basis:7.5mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-mini-cross,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-mini-cross{
+  font-size:17pt!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name{
+  font-size:9.05pt!important;line-height:1.11!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name.medium,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name.medium{
+  font-size:8.35pt!important;line-height:1.1!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name.long,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name.long{
+  font-size:7.6pt!important;line-height:1.08!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name.very-long,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name.very-long{
+  font-size:6.75pt!important;line-height:1.07!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-status,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-status{
+  font-size:7.55pt!important;line-height:1.1!important;
+  padding:.4mm .55mm!important;
+ }
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
