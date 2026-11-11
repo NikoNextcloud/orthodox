@@ -502,6 +502,48 @@ body.candle-preview .app{background:#100604}
   background:white!important;color:#29231c!important
  }
 }
+
+/* Full-height explicit print rules: each of the 7 day columns has a real
+   line element. These are drawn above cell backgrounds so print engines
+   cannot drop an internal vertical border in some rows. */
+@media print {
+ .print-sheet .print-grid,.print-details .print-grid{
+  position:relative!important;
+  isolation:isolate;
+  border-left:1.25px solid #39352f!important;
+  border-bottom:0!important;
+  overflow:hidden!important;
+ }
+ .print-sheet .print-day,.print-details .print-day,
+ .print-sheet .print-day.empty,.print-details .print-day.empty{
+  border-right:0!important;
+ }
+ .print-sheet .print-column-rules,.print-details .print-column-rules{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;height:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  grid-template-rows:1fr!important;
+  z-index:5!important;
+  padding:0!important;margin:0!important;
+  box-sizing:border-box!important;
+  pointer-events:none!important;
+  background:transparent!important;
+ }
+ .print-sheet .print-column-rule,.print-details .print-column-rule{
+  box-sizing:border-box!important;
+  display:block!important;
+  height:100%!important;
+  min-width:0!important;
+  padding:0!important;margin:0!important;
+  border:0!important;
+  border-right:1.25px solid #39352f!important;
+  background:transparent!important;
+  print-color-adjust:exact!important;
+  -webkit-print-color-adjust:exact!important;
+ }
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -570,7 +612,7 @@ const CURATED={"2027-01-01":"039 Circumcision of Jesus Icon from Saint Paraskevi
 const MONTHS=['Януари','Февруари','Март','Април','Май','Юни','Юли','Август','Септември','Октомври','Ноември','Декември'];
 const WEEK=['Неделя','Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота'];
 const SHORT=['НД','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
-const STATUS={S:['🕯 Строг пост','strict'],O:['🫒 С олио','oil'],F:['🐟 Риба','fish'],B:['🌿 Блажи се','free'],D:['✝ Разрешение','dispensation'],W:['☩ Постно','weekly']};
+const STATUS={S:['🕯 Строг пост','strict'],O:['🫒 С олио','oil'],F:['🐟 Риба','fish'],B:['🌿 Блажно','free'],D:['✝ Разрешение','dispensation'],W:['☩ Постно','weekly']};
 const FSTATUS_OLD={"2025":"BBBBSBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBBBWBWBBDDDDDDDSSSSSOOSSSSSOOSSSSSOOSFSSSOOSSSSSOOSSSSSOFSSSSSSBBBBBBBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBOOSOSFFOOSOSFBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBSOOSOFOSOOSOSOWBBBBWBWBBBBWBSBBBBWBWBBBBWBWBSBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWFFSOSOFFFSOSOSFFSOSOSFFSOSOSFFSOSOSOOSOSBBBBBBB","2026":"BBBBSBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBBBWBWBBDDDDDDDSSSSSOOSSSSSOOSSSSSOOSSSSSOOSSFSSOOSSSSSOFSSSSSSBBBBBBBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBOOSOSFFOOSOSFFOOSOSFFBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWOOSOSFSOOSOSOSBBBBWBWBBBBWBWSBBBWBWBBBBWBWBBSBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBFSOSOSFFSOSOSFFSOSOSFFSOSOSFFSOSOSFOSOSSBBBBBBB"};
 const FSTATUS="BBBBSWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBBBWBWBBDDDDDDDSSSSSOOSSSFSOOSSSSSOOSSSSSOOSSSSSOOSSSSSOFSSSSSSBBBBBBBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBBBBBBOBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBOSOSOFOOSOSOSOBBBWBWBBBBWBWBSBBWBWBBBBWBWBBBSWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBBBWBWBBSFSFSFFSFSFSFFSFSFSFFFFSFSFFSFSFSFFSOSOSBBBBBBB";
 const pad=n=>String(n).padStart(2,'0');
@@ -805,7 +847,7 @@ function buildPrint(){
   while(days.length<weeks*7)days.push('<div class="print-day empty" aria-hidden="true"></div>');
   return '<div class="print-title"><h1>☦ '+esc(MONTHS[m])+' '+y+'</h1><small>'+(detailed?'ПОДРОБЕН ПРАВОСЛАВЕН КАЛЕНДАР':'ПРАВОСЛАВЕН КАЛЕНДАР')+'</small></div>'+
    '<div class="print-week">'+headers.map(label=>'<span>'+esc(label)+'</span>').join('')+'</div>'+
-   '<div class="print-grid" style="--print-weeks:'+weeks+'">'+days.join('')+'</div>'+
+   '<div class="print-grid" style="--print-weeks:'+weeks+'">'+days.join('')+'<div class="print-column-rules" aria-hidden="true">'+Array.from({length:7},()=>'<span class="print-column-rule"></span>').join('')+'</div>'+'</div>'+
    '<div class="print-credits"><span>☦ '+(detailed?'Подробни чествания и постни правила':'Светци, празници и постни дни')+'</span><span>Православен календар · '+y+' г.</span></div>';
  }
  ele('printSheet').innerHTML=calendarSheet(false);
