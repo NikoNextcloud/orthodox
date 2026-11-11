@@ -338,6 +338,26 @@ body.candle-preview .app{background:#100604}
  .print-fasts .print-fasts-credit{font-size:8pt;color:#756954;border-top:1px solid #baa176;padding-top:3mm;margin-top:9mm}
 }
 
+
+/* Details modal: the feast classification remains a small dot and unboxed text. */
+@media screen {
+ .detail-meta #detailFeastType {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+  padding:2px 0!important;
+  color:#e8d1a8!important;
+  font:600 11px/1.5 'Raleway',Arial,sans-serif;
+  text-align:left;
+  min-width:0;
+  max-width:100%;
+  white-space:normal;
+ }
+ .detail-meta #detailFeastType .feast-mark{flex-shrink:0;vertical-align:middle}
+ .detail-meta{column-gap:12px;row-gap:8px}
+}
+
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -618,7 +638,7 @@ function openDetail(k){selectDate(k);const d=fromKey(k);ele('detailDate').textCo
 function closeSheets(){ele('detailShade').classList.remove('open');ele('menuShade').classList.remove('open')}
 function openMenu(){ele('menuShade').classList.add('open')}
 function keysForMonth(m,y=fromKey(selected).getFullYear()){return Array.from({length:new Date(y,m+1,0).getDate()},(_,i)=>`${y}-${pad(m+1)}-${pad(i+1)}`)}
-function buildPrint(){const d=fromKey(selected),m=d.getMonth(),y=d.getFullYear(),keys=keysForMonth(m,y);const first=fromKey(keys[0]).getDay(),offset=(first+6)%7;const blanks=Array(offset).fill('<div class="print-day empty"></div>');for(const k of keys){const day=fromKey(k),meta=feastMeta(k);blanks.push(`<div class="print-day${fastPeriodAt(k)?' fast-span fast-'+fastPeriodAt(k)[3]:''}"><b>${day.getDate()}</b><span class="name">${esc(titleFor(k))}</span><span class="state">${esc(getStatus(k)[0])}</span><span class="state">${esc(meta.name)} — ${esc(meta.desc)}</span></div>`)}while(blanks.length<42)blanks.push('<div class="print-day empty"></div>');ele('printSheet').innerHTML=`<div class="print-title"><h1>☦ ${MONTHS[m]} ${y}</h1><small>ПРАВОСЛАВЕН КАЛЕНДАР</small></div><div class="print-week">${['Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота','Неделя'].map(x=>`<span>${x}</span>`).join('')}</div><div class="print-grid">${blanks.join('')}</div><div class="print-feast-legend">${Object.entries(FEAST_COLORS).map(([key,meta])=>`<span><span class="feast-mark ${meta.cls}" aria-hidden="true"></span>${esc(FEAST_LEGEND_LABELS[key])}</span>`).join('')}</div><div class="print-credits"><span>☩ Постно · 🕯 Строг пост · 🫒 С олио · 🐟 Риба · 🌿 Блажи се</span><span>${y===2027?'По предоставените данни за 2027 г.':'По съществуващия календар за '+y+' г.'}</span></div>`;ele('printDetails').innerHTML=`<h1>☦ ${MONTHS[m]} ${y} — Светци и празници</h1><div class="print-detail-list">${keys.map(k=>{const day=fromKey(k),meta=feastMeta(k);return `<div class="print-detail"><b>${day.getDate()} ${MONTHS[m]} · ${WEEK[day.getDay()]}</b><div>${esc(DATA[k].text)}</div><span class="state">${esc(getStatus(k)[0])}</span><span class="state">${esc(meta.name)} — ${esc(meta.desc)}</span></div>`}).join('')}</div>`}
+function buildPrint(){const d=fromKey(selected),m=d.getMonth(),y=d.getFullYear(),keys=keysForMonth(m,y);const first=fromKey(keys[0]).getDay(),offset=(first+6)%7;const blanks=Array(offset).fill('<div class="print-day empty"></div>');for(const k of keys){const day=fromKey(k);blanks.push(`<div class="print-day${fastPeriodAt(k)?' fast-span fast-'+fastPeriodAt(k)[3]:''}"><b>${day.getDate()}</b><span class="name">${esc(titleFor(k))}</span><span class="state">${esc(getStatus(k)[0])}</span></div>`)}while(blanks.length<42)blanks.push('<div class="print-day empty"></div>');ele('printSheet').innerHTML=`<div class="print-title"><h1>☦ ${MONTHS[m]} ${y}</h1><small>ПРАВОСЛАВЕН КАЛЕНДАР</small></div><div class="print-week">${['Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота','Неделя'].map(x=>`<span>${x}</span>`).join('')}</div><div class="print-grid">${blanks.join('')}</div><div class="print-credits"><span>☩ Постно · 🕯 Строг пост · 🫒 С олио · 🐟 Риба · 🌿 Блажи се</span><span>${y===2027?'По предоставените данни за 2027 г.':'По съществуващия календар за '+y+' г.'}</span></div>`;ele('printDetails').innerHTML=`<h1>☦ ${MONTHS[m]} ${y} — Светци и празници</h1><div class="print-detail-list">${keys.map(k=>{const day=fromKey(k);return `<div class="print-detail"><b>${day.getDate()} ${MONTHS[m]} · ${WEEK[day.getDay()]}</b><div>${esc(DATA[k].text)}</div><span class="state">${esc(getStatus(k)[0])}</span></div>`}).join('')}</div>`}
 function printMonth(detailed){closeSheets();buildPrint();document.body.classList.remove('print-fasts');document.body.classList.toggle('print-full',detailed);window.print()}
 function printFasts2027(){
  closeSheets();
