@@ -1,1 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="105" fill="#1a0a0a"/><rect x="24" y="24" width="464" height="464" rx="88" fill="none" stroke="#c9a84c" stroke-width="14"/><path d="M256 92v324M166 172h180M192 300h128" stroke="#c9a84c" stroke-width="34" stroke-linecap="round"/><path d="M172 392q84-22 168 0" fill="none" stroke="#c9a84c" stroke-width="18" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+<title id="title">Православен календар</title>
+<desc id="desc">Златен православен кръст и календар върху тъмночервен фон.</desc>
+<defs>
+<radialGradient id="bg" cx="48%" cy="38%" r="75%"><stop offset="0" stop-color="#672119"/><stop offset=".66" stop-color="#350c0c"/><stop offset="1" stop-color="#170507"/></radialGradient>
+<linearGradient id="gold" x1="0" y1="0" x2=".8" y2="1"><stop offset="0" stop-color="#fff1b5"/><stop offset=".25" stop-color="#f0c66a"/><stop offset=".65" stop-color="#bd8135"/><stop offset="1" stop-color="#ffde8b"/></linearGradient>
+<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff5d2"/><stop offset="1" stop-color="#dba75a"/></linearGradient>
+<filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#090103" flood-opacity=".55"/></filter>
+</defs>
+<rect width="512" height="512" rx="108" fill="#160406"/>
+<rect x="15" y="15" width="482" height="482" rx="99" fill="url(#bg)" stroke="url(#gold)" stroke-width="13"/>
+<rect x="29" y="29" width="454" height="454" rx="89" fill="none" stroke="#f8d47d" stroke-opacity=".48" stroke-width="3"/>
+<circle cx="256" cy="235" r="178" fill="none" stroke="#f0c36e" stroke-opacity=".30" stroke-width="5"/>
+<g filter="url(#shadow)"><path d="M243 76h26v38h39v25h-39v46h91v30h-91v42l58-14 7 27-65 16v38h-26v-31l-69 17-7-27 76-19v-49h-92v-30h92v-46h-40v-25h40z" fill="url(#gold)" stroke="#fff2be" stroke-width="4" stroke-linejoin="round"/></g>
+<g filter="url(#shadow)"><rect x="112" y="345" width="288" height="123" rx="19" fill="url(#paper)" stroke="#f5cc77" stroke-width="10"/><path d="M120 365q0-14 15-14h241q16 0 16 14v28H120z" fill="#a64b28"/><path d="M175 339v32M337 339v32" stroke="#f9e0a6" stroke-width="13" stroke-linecap="round"/><g fill="#7a2d1d"><rect x="146" y="407" width="42" height="21" rx="3"/><rect x="201" y="407" width="42" height="21" rx="3"/><rect x="256" y="407" width="42" height="21" rx="3"/><rect x="311" y="407" width="42" height="21" rx="3"/><rect x="146" y="439" width="42" height="15" rx="3"/><rect x="201" y="439" width="42" height="15" rx="3"/><rect x="256" y="439" width="42" height="15" rx="3"/><rect x="311" y="439" width="42" height="15" rx="3"/></g></g>
+</svg>
