@@ -358,6 +358,78 @@ body.candle-preview .app{background:#100604}
  .detail-meta{column-gap:12px;row-gap:8px}
 }
 
+
+/* A4 landscape: each month uses one sheet, including the detailed month print. */
+@media print {
+ @page {size:A4 landscape;margin:8mm}
+ html,body{margin:0!important;padding:0!important;min-height:0!important;height:auto!important}
+ .print-sheet,.print-details,.print-grid,.print-detail-list{box-sizing:border-box}
+ body:not(.print-full):not(.print-fasts) .print-sheet{
+  display:flex!important;flex-direction:column;width:100%;max-width:281mm;
+  height:188mm;margin:0;overflow:visible;break-inside:avoid;page-break-inside:avoid;
+  break-after:avoid;page-break-after:avoid;
+ }
+ body:not(.print-full):not(.print-fasts) .print-title{
+  flex:0 0 auto;margin:0 0 2mm;padding:0 0 2mm
+ }
+ body:not(.print-full):not(.print-fasts) .print-title h1{
+  font-size:20pt;line-height:1.05
+ }
+ body:not(.print-full):not(.print-fasts) .print-week{
+  flex:0 0 auto;margin:0 0 1.2mm
+ }
+ body:not(.print-full):not(.print-fasts) .print-week span{
+  padding:1mm;font-size:7.5pt
+ }
+ body:not(.print-full):not(.print-fasts) .print-grid{
+  display:grid;flex:1 1 auto;min-height:0;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  grid-template-rows:repeat(var(--print-weeks,6),minmax(0,1fr));
+  gap:1mm;break-inside:avoid
+ }
+ body:not(.print-full):not(.print-fasts) .print-day{
+  min-height:0;padding:1mm;gap:.6mm;break-inside:avoid
+ }
+ body:not(.print-full):not(.print-fasts) .print-day b{
+  font:700 11pt/1 Georgia,serif
+ }
+ body:not(.print-full):not(.print-fasts) .print-day .name{
+  display:block;flex:1 1 auto;min-height:0;overflow:visible;
+  overflow-wrap:anywhere;font:7.2pt/1.1 Arial,sans-serif
+ }
+ body:not(.print-full):not(.print-fasts) .print-day .state{
+  display:block;flex:0 0 auto;padding:.65mm .7mm;font:6.2pt/1.12 Arial,sans-serif
+ }
+ body:not(.print-full):not(.print-fasts) .print-credits{
+  flex:0 0 auto;min-height:4mm;margin:1.4mm 0 0;padding:1.2mm 0 0;font-size:6.6pt
+ }
+ body.print-full .print-details{
+  display:flex!important;flex-direction:column;width:100%;max-width:281mm;
+  height:188mm;margin:0;overflow:visible;break-inside:avoid;page-break-inside:avoid;
+  break-after:avoid;page-break-after:avoid
+ }
+ body.print-full .print-details h1{
+  flex:0 0 auto;margin:0 0 3mm;padding:0 0 2mm;
+  border-bottom:1px solid #bda376;color:#624a24;font:700 19pt/1.12 Georgia,serif
+ }
+ body.print-full .print-detail-list{
+  display:grid;flex:1 1 auto;min-height:0;
+  grid-auto-flow:column;grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:repeat(var(--print-detail-rows,8),minmax(0,1fr));
+  column-gap:3mm;row-gap:.7mm;column-count:auto;
+  font:7.2pt/1.15 Georgia,serif
+ }
+ body.print-full .print-detail{
+  min-height:0;margin:0;padding:.4mm .7mm;break-inside:avoid;
+  border-bottom:1px solid #e1dbd2;overflow:visible;font:7.2pt/1.15 Georgia,serif
+ }
+ body.print-full .print-detail b{
+  display:block;font:700 7.4pt/1.12 Arial,sans-serif
+ }
+ body.print-full .print-detail .state{
+  display:block;margin-top:.5mm;font:6.4pt/1.12 Arial,sans-serif
+ }
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -638,7 +710,7 @@ function openDetail(k){selectDate(k);const d=fromKey(k);ele('detailDate').textCo
 function closeSheets(){ele('detailShade').classList.remove('open');ele('menuShade').classList.remove('open')}
 function openMenu(){ele('menuShade').classList.add('open')}
 function keysForMonth(m,y=fromKey(selected).getFullYear()){return Array.from({length:new Date(y,m+1,0).getDate()},(_,i)=>`${y}-${pad(m+1)}-${pad(i+1)}`)}
-function buildPrint(){const d=fromKey(selected),m=d.getMonth(),y=d.getFullYear(),keys=keysForMonth(m,y);const first=fromKey(keys[0]).getDay(),offset=(first+6)%7;const blanks=Array(offset).fill('<div class="print-day empty"></div>');for(const k of keys){const day=fromKey(k);blanks.push(`<div class="print-day${fastPeriodAt(k)?' fast-span fast-'+fastPeriodAt(k)[3]:''}"><b>${day.getDate()}</b><span class="name">${esc(titleFor(k))}</span><span class="state">${esc(getStatus(k)[0])}</span></div>`)}while(blanks.length<42)blanks.push('<div class="print-day empty"></div>');ele('printSheet').innerHTML=`<div class="print-title"><h1>☦ ${MONTHS[m]} ${y}</h1><small>ПРАВОСЛАВЕН КАЛЕНДАР</small></div><div class="print-week">${['Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота','Неделя'].map(x=>`<span>${x}</span>`).join('')}</div><div class="print-grid">${blanks.join('')}</div><div class="print-credits"><span>☩ Постно · 🕯 Строг пост · 🫒 С олио · 🐟 Риба · 🌿 Блажи се</span><span>${y===2027?'По предоставените данни за 2027 г.':'По съществуващия календар за '+y+' г.'}</span></div>`;ele('printDetails').innerHTML=`<h1>☦ ${MONTHS[m]} ${y} — Светци и празници</h1><div class="print-detail-list">${keys.map(k=>{const day=fromKey(k);return `<div class="print-detail"><b>${day.getDate()} ${MONTHS[m]} · ${WEEK[day.getDay()]}</b><div>${esc(DATA[k].text)}</div><span class="state">${esc(getStatus(k)[0])}</span></div>`}).join('')}</div>`}
+function buildPrint(){const d=fromKey(selected),m=d.getMonth(),y=d.getFullYear(),keys=keysForMonth(m,y);const first=fromKey(keys[0]).getDay(),offset=(first+6)%7;const weeks=Math.ceil((offset+keys.length)/7),blanks=Array(offset).fill('<div class="print-day empty"></div>');for(const k of keys){const day=fromKey(k);blanks.push(`<div class="print-day${fastPeriodAt(k)?' fast-span fast-'+fastPeriodAt(k)[3]:''}"><b>${day.getDate()}</b><span class="name">${esc(titleFor(k))}</span><span class="state">${esc(getStatus(k)[0])}</span></div>`)}while(blanks.length<weeks*7)blanks.push('<div class="print-day empty"></div>');ele('printSheet').innerHTML=`<div class="print-title"><h1>☦ ${MONTHS[m]} ${y}</h1><small>ПРАВОСЛАВЕН КАЛЕНДАР</small></div><div class="print-week">${['Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота','Неделя'].map(x=>`<span>${x}</span>`).join('')}</div><div class="print-grid" style="--print-weeks:${weeks}">${blanks.join('')}</div><div class="print-credits"><span>☩ Постно · 🕯 Строг пост · 🫒 С олио · 🐟 Риба · 🌿 Блажи се</span><span>${y===2027?'По предоставените данни за 2027 г.':'По съществуващия календар за '+y+' г.'}</span></div>`;ele('printDetails').innerHTML=`<h1>☦ ${MONTHS[m]} ${y} — Светци и празници</h1><div class="print-detail-list" style="--print-detail-rows:${Math.ceil(keys.length/4)}">${keys.map(k=>{const day=fromKey(k);return `<div class="print-detail"><b>${day.getDate()} ${MONTHS[m]} · ${WEEK[day.getDay()]}</b><div>${esc(DATA[k].text)}</div><span class="state">${esc(getStatus(k)[0])}</span></div>`}).join('')}</div>`}
 function printMonth(detailed){closeSheets();buildPrint();document.body.classList.remove('print-fasts');document.body.classList.toggle('print-full',detailed);window.print()}
 function printFasts2027(){
  closeSheets();
