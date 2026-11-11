@@ -696,6 +696,48 @@ body.candle-preview .app{background:#100604}
   padding:.4mm .55mm!important;
  }
 }
+
+/* Print long-description safeguard: large standard type with automatic
+   smaller face only for dense saints' descriptions and 6-week months. */
+@media print {
+ .print-sheet .print-day-head,.print-details .print-day-head{
+  min-height:9mm!important;max-height:9.4mm!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-head,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-head{
+  min-height:7.4mm!important;max-height:7.8mm!important;
+ }
+ .print-sheet .print-day-name,.print-details .print-day-name{
+  font-size:9.6pt!important;
+ }
+ .print-sheet .print-day-name.medium,.print-details .print-day-name.medium{
+  font-size:8.2pt!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name{
+  font-size:8.55pt!important;
+ }
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day-name.medium,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day-name.medium{
+  font-size:7.2pt!important;
+ }
+ .print-sheet .print-day.detailed .print-day-name,
+ .print-details .print-day.detailed .print-day-name{font-size:9pt!important}
+ .print-sheet .print-day.detailed .print-day-name.medium,
+ .print-details .print-day.detailed .print-day-name.medium{font-size:7.9pt!important}
+ .print-sheet .print-day.detailed .print-day-name.long,
+ .print-details .print-day.detailed .print-day-name.long{font-size:6.95pt!important}
+ .print-sheet .print-day.detailed .print-day-name.very-long,
+ .print-details .print-day.detailed .print-day-name.very-long{font-size:6pt!important}
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name{font-size:8.35pt!important}
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.medium,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.medium{font-size:7pt!important}
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.long,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.long{font-size:6.1pt!important}
+ .print-sheet .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.very-long,
+ .print-details .print-grid[style*="--print-weeks:6"] .print-day.detailed .print-day-name.very-long{font-size:5.5pt!important}
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -987,7 +1029,7 @@ function buildPrint(){
    const weekday=fromKey(k).getDay(),number=Number(k.slice(8));
    const value=(detailed?DATA[k].text:titleFor(k))||'Църковен ден';
    const fast=fastPeriodAt(k);
-   const level=value.length>150?' very-long':value.length>100?' long':value.length>64?' medium':'';
+   const level=value.length>150?' very-long':value.length>100?' long':value.length>(weeks===6?46:64)?' medium':'';
    const fasting=String(getStatus(k)[0]).replace(/^[^ ]+ /,'');
    const classes='print-day'+(weekday===0?' sunday':'')+(fast?' fast-span fast-'+fast[3]:'')+(detailed?' detailed':'');
    const firstIcon=iconCandidates(k)[0];
