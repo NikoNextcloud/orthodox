@@ -291,6 +291,15 @@ body:before{opacity:.22;background-image:repeating-linear-gradient(90deg,transpa
  .mobile-day-card.weekday-fast{border-left-color:#d9ad65}
  .mobile-day-card.weekday-fast .mobile-day-fast{background:#48351c;color:#ffe0a2;border-color:#bd9655}
 }
+
+/* Always-visible month navigation on the mobile 3-column calendar. */
+@media(max-width:600px){
+ .mobile-month-pager{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;align-items:center;gap:8px;width:100%}
+ .mobile-month-pager .month-caption{text-align:center;min-width:0;font-size:clamp(24px,7vw,31px);line-height:1.2;margin:0}
+ .mobile-month-pager button{min-width:48px;min-height:48px;border:1px solid #bd9551;border-radius:12px;background:#301a0e;color:#f4d47b;font-size:31px;line-height:1;display:grid;place-items:center}
+ .mobile-month-pager button:active{background:#5b371e}
+ .mobile-month-pager button:disabled{opacity:.35}
+}
 </style>
 </head>
 <body>
@@ -525,9 +534,19 @@ function renderMobileMonthList(current){
  }
  return out+'</div>';
 }
+// Month numbers passed to at() are 1-based; Date.getMonth() is 0-based.
+function changeMobileMonth(step){
+ const d=state.date;
+ state.view='month';
+ state.date=clamp(at(d.getFullYear(),d.getMonth()+1+step,1));
+ render();
+}
 function renderMobileMonth(current){
  const label=MONTHS[current.getMonth()]+' '+current.getFullYear();
- return `<div class="mobile-month-heading"><h2 class="month-caption">${esc(label)}</h2></div>`+renderMobileMonthList(current);
+ const disablePrev=current.getFullYear()===2025&&current.getMonth()===0;
+ const disableNext=current.getFullYear()===2027&&current.getMonth()===11;
+ const pager=`<div class="mobile-month-heading"><div class="mobile-month-pager"><button type="button" data-mobile-month-shift="-1" aria-label="Предишен месец" ${disablePrev?'disabled':''}>‹</button><h2 class="month-caption">${esc(label)}</h2><button type="button" data-mobile-month-shift="1" aria-label="Следващ месец" ${disableNext?'disabled':''}>›</button></div></div>`;
+ return pager+renderMobileMonthList(current);
 }
 
 const originalRender=render;
@@ -541,6 +560,7 @@ function mobileRender(){
  document.querySelector('.legend').style.display=v==='month'?'flex':'none';
  if(v==='month'){
   root.innerHTML=renderMobileMonth(d);
+  root.querySelectorAll('[data-mobile-month-shift]').forEach(button=>button.addEventListener('click',()=>changeMobileMonth(Number(button.dataset.mobileMonthShift))));
  }else if(v==='week'){
   const mon=add(d,-((d.getDay()+6)%7)),sel=iso(d);
   root.innerHTML='<div class="mobile-week-selector">'+Array.from({length:7},(_,i)=>{const date=add(mon,i);return `<button data-weekday="${iso(date)}" class="${iso(date)===sel?'active':''}">${['Н','П','В','С','Ч','П','С'][date.getDay()]}<b>${date.getDate()}</b></button>`}).join('')+'</div><div class="weekdetail">'+detailHTML(sel)+'</div>';
@@ -570,8 +590,8 @@ function renderMobileHero(){const d=new Date(),key=iso(d),x=getD(key),hero=docum
 }
 function initializeMobile(){
  renderMobileHero();
- document.getElementById('mobilePrevious').onclick=()=>{const d=state.date;state.date=clamp(at(d.getFullYear(),d.getMonth(),1));state.view='month';nav(-1)};
- document.getElementById('mobileNext').onclick=()=>{const d=state.date;state.date=clamp(at(d.getFullYear(),d.getMonth(),1));state.view='month';nav(1)};
+ document.getElementById('mobilePrevious').onclick=()=>changeMobileMonth(-1);
+ document.getElementById('mobileNext').onclick=()=>changeMobileMonth(1);
  document.getElementById('mobileToday').onclick=()=>{state.date=clamp(at(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()));state.view='month';render()};
  document.getElementById('mobileSettings').onclick=toggleSettings;
  document.querySelectorAll('[data-mobile-tab]').forEach(b=>b.onclick=()=>{state.view=b.dataset.mobileTab;if(state.view==='day')state.date=clamp(at(new Date().getFullYear(),new Date().getMonth()+1,new Date().getDate()));render()});
