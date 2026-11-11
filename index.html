@@ -244,12 +244,12 @@ body.candle-preview .app{background:#100604}
  .fast-apostles{--fast-accent:#268ca8;--fast-wash:#203c45;--fast-text:#c8ebf3}
  .fast-dormition{--fast-accent:#567bd1;--fast-wash:#233550;--fast-text:#d0e3ff}
  .fast-nativity{--fast-accent:#c56649;--fast-wash:#45301d;--fast-text:#f3d5a7}
- .fast-period-banner{display:grid;gap:7px;margin:4px 0 14px}
- .fast-period-summary{display:flex;flex-wrap:wrap;align-items:center;column-gap:12px;row-gap:4px;padding:12px 14px;border-left:5px solid var(--fast-accent);border-top:1px solid #86633e66;border-right:1px solid #86633e66;border-bottom:1px solid #86633e66;border-radius:7px;background:linear-gradient(100deg,var(--fast-wash),#25140e 92%);box-shadow:inset 0 1px #fff1,0 4px 12px #0003}
- .fast-period-name{color:var(--fast-text);font:700 18px/1.1 'Cormorant Garamond',Georgia,serif}
- .fast-period-dates{color:#f3dfbc;font:650 12px/1.45 Raleway,Arial,sans-serif}
- .fast-period-length{margin-left:auto;border:1px solid var(--fast-accent);border-radius:99px;padding:3px 8px;color:var(--fast-text);white-space:nowrap;font:700 10px Raleway,Arial,sans-serif}
- .fast-period-explain{margin:0 1px;color:#bda785;font:500 10px/1.4 Raleway,Arial,sans-serif}
+ 
+ 
+ 
+ 
+ 
+ 
  /* The triangle is clipped by the already rounded card border. No card background or border override. */
  .day-card.fast-span::after{content:"";position:absolute;top:0;right:0;width:25px;height:25px;background:var(--fast-accent);clip-path:polygon(0 0,100% 0,100% 100%);pointer-events:none;z-index:2}
  /* Keep liturgical feast dot visible below the corner, without shifting the date text. */
@@ -257,12 +257,12 @@ body.candle-preview .app{background:#100604}
  .detail-fast-period{margin:12px 0 5px;padding:10px 12px;border-left:4px solid var(--fast-accent);border-radius:5px;background:var(--fast-wash);color:var(--fast-text);font:650 12px/1.45 Raleway,Arial,sans-serif}
 }
 @media screen and (max-width:699px){
- .fast-period-summary{padding:10px 11px;column-gap:8px}
- .fast-period-name{font-size:17px}
- .fast-period-dates{font-size:11px}
+ 
+ 
+ 
 }
 @media screen and (max-width:355px){
- .fast-period-length{font-size:9px}
+ 
  .day-card.fast-span::after{width:21px;height:21px}
  .day-card.fast-span .card-top-right{transform:translateY(17px)}
 }
@@ -275,6 +275,20 @@ body.candle-preview .app{background:#100604}
  .print-day.fast-nativity{--fast-accent:#c56649}
 }
 
+
+/* Compact month navigation replaces the large heading and fasting-period banner. */
+@media screen{
+ .month-navigation{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,24px);margin:18px auto 16px;padding:4px 0 10px;max-width:580px;border-bottom:1px solid #a47a405e}
+ .month-navigation-label{flex:0 1 290px;min-width:0;color:#f3ce83;text-align:center;font:700 clamp(23px,4.8vw,32px)/1.15 'Cormorant Garamond',Georgia,serif;white-space:nowrap}
+ .month-navigation-arrow{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;padding:0 0 5px;border:1px solid #987144;border-radius:11px;background:linear-gradient(155deg,#432819,#29140b);box-shadow:inset 0 1px #f4d18b28,0 3px 12px #0004;color:#f3ce83;font:700 34px/1 Georgia,serif;transition:background .15s,border-color .15s}
+ .month-navigation-arrow:not(:disabled):hover,.month-navigation-arrow:not(:disabled):active{background:#634023;border-color:#f0c979}
+ .month-navigation-arrow:disabled{opacity:.28;box-shadow:none}
+}
+@media screen and (max-width:355px){
+ .month-navigation{gap:10px;margin:13px auto 12px}
+ .month-navigation-label{font-size:23px}
+ .month-navigation-arrow{width:39px;height:42px;flex-basis:39px}
+}
 </style></head><body>
 <main class="app" id="app">
  <header class="classic-mast" aria-label="Заглавие на православния календар">
@@ -296,8 +310,11 @@ body.candle-preview .app{background:#100604}
 
  <section class="week-area" aria-label="Седмичен календар"><div id="weekStrip" class="week-strip"></div></section>
  <section class="date-row"><div class="date-info"><h1 id="fullDate">Неделя, 2 Май 2027 г.</h1><p id="dateSubtitle">Православен календар</p></div><button class="date-action" id="openMenu" type="button" aria-label="Избор на месец и печат"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 9h18M8.3 15.1l2.3 2.3 5-5"/></svg></button></section>
- <div class="section-label"><small>ДЕН</small><strong>Светци и празници</strong><div class="grow"></div><div class="year-switch" role="group" aria-label="Избери година"><button type="button" data-jump-year="2026" aria-pressed="false">2026</button><button type="button" data-jump-year="2027" aria-pressed="false">2027</button></div><span class="month-marker" id="monthMarker"></span></div>
- <section id="fastPeriodBanner" class="fast-period-banner" aria-label="Многодневни пости през месеца" aria-live="polite" hidden></section>
+ <nav class="month-navigation" aria-label="Навигация по месеци">
+   <button type="button" class="month-navigation-arrow" id="monthArrowPrev" aria-label="Предишен месец" title="Предишен месец">‹</button>
+   <strong class="month-navigation-label" id="monthMarker" aria-live="polite">Ноември 2026</strong>
+   <button type="button" class="month-navigation-arrow" id="monthArrowNext" aria-label="Следващ месец" title="Следващ месец">›</button>
+ </nav>
  <div id="monthGrid" class="month-grid" aria-label="Дни от избрания месец"></div>
   <div class="legend-title">Цветове на празниците</div>
   <div class="legend" id="feastLegend" aria-label="Легенда за цветовете на празниците"></div>
@@ -356,14 +373,6 @@ const fastOrdinal=(k,p)=>Math.round((Date.parse(k+'T00:00:00Z')-Date.parse(p[0]+
 const fastDateBG=k=>{const d=fromKey(k);return d.getDate()+' '+MONTHS[d.getMonth()].toLowerCase()};
 const fastRange=p=>fastDateBG(p[0])+' – '+fastDateBG(p[1])+' '+p[1].slice(0,4)+' г.';
 const fastDescription=(p,k)=>p[2]+' · '+fastRange(p)+(k?' · Ден '+fastOrdinal(k,p)+' от '+fastDayCount(p):'');
-function renderFastBanner(){
- const d=fromKey(selected),y=d.getFullYear(),m=d.getMonth();
- const start=keyFor(new Date(y,m,1,12)),end=keyFor(new Date(y,m+1,0,12));
- const periods=FAST_PERIODS.filter(p=>p[0]<=end&&p[1]>=start);
- const target=ele('fastPeriodBanner');target.hidden=!periods.length;
- target.innerHTML=periods.map(p=>'<div class="fast-period-summary fast-'+p[3]+'"><span class="fast-period-name">☦ '+esc(p[2])+'</span><span class="fast-period-dates">'+esc(fastRange(p))+'</span><span class="fast-period-length">'+fastDayCount(p)+' дни</span></div>').join('')+(periods.length?'<p class="fast-period-explain">Цветният ъгъл горе вдясно обозначава всеки ден от поста. Кръглите точки обозначават празниците.</p>':'');
-}
-
 const firstDay=new Date(),firstKey=keyFor(firstDay);let selected=DATA[firstKey]?firstKey:'2026-11-11';
 const ele=id=>document.getElementById(id);
 function selectDate(k){if(!DATA[k])return;selected=k;render()}
@@ -372,14 +381,14 @@ function moveWeek(n){const d=fromKey(selected);d.setDate(d.getDate()+n*7);if(inS
 function moveMonth(n){const d=fromKey(selected),target=new Date(d.getFullYear(),d.getMonth()+n,1,12);if(!inScope(target))return;const day=Math.min(d.getDate(),new Date(target.getFullYear(),target.getMonth()+1,0).getDate());selectDate(keyFor(new Date(target.getFullYear(),target.getMonth(),day,12)));}
 function weekdayStrip(){const d=fromKey(selected),mon=new Date(d);mon.setDate(d.getDate()-((d.getDay()+6)%7));return Array.from({length:7},(_,i)=>{const dt=new Date(mon);dt.setDate(mon.getDate()+i);const k=keyFor(dt);const active=k===selected;return `<button class="week-cell${inScope(dt)?'':' is-outside'}" type="button" data-date="${k}" ${inScope(dt)?'':'disabled'} ${active?'aria-current="date"':''} aria-label="${esc(WEEK[dt.getDay()])}, ${dt.getDate()} ${esc(MONTHS[dt.getMonth()])}"><span>${SHORT[dt.getDay()]}</span><strong>${dt.getDate()}</strong></button>`}).join('')}
 function monthGrid(){const date=fromKey(selected),m=date.getMonth(),y=date.getFullYear(),length=new Date(y,m+1,0).getDate();return Array.from({length},(_,i)=>{const k=`${y}-${pad(m+1)}-${pad(i+1)}`,st=getStatus(k),label=titleFor(k),weekday=fromKey(k).getDay(),shortDay=['Нед','Пон','Вт','Ср','Чет','Пет','Съб'][weekday];const fast=fastPeriodAt(k);return `<button type="button" class="day-card${k===selected?' selected':''}${fast?' fast-span fast-'+fast[3]:''}${fast&&k===fast[0]?' fast-start':''}${fast&&k===fast[1]?' fast-end':''}" data-day="${k}" ${fast?'title="'+esc(fastDescription(fast,k))+'"':''} aria-label="${esc(String(i+1)+' '+MONTHS[m]+', '+WEEK[weekday]+', '+label+', '+st[0]+', '+feastMeta(k).name+(fast?', '+fastDescription(fast,k):''))}"><div class="card-top"><span class="card-date"><b>${i+1}</b><span class="card-weekday" title="${WEEK[weekday]}">${shortDay}</span></span>${feastBadgeHTML(k)}</div>${iconMarkup(k,'day-icon')}<span class="day-title">${esc(label)}</span><span class="fast-label">${esc(st[0])}</span></button>`}).join('')}
-function render(){const d=fromKey(selected);ele('weekStrip').innerHTML=weekdayStrip();ele('fullDate').textContent=WEEK[d.getDay()]+', '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' г.';ele('dateSubtitle').textContent=titleFor(selected);ele('monthMarker').textContent=MONTHS[d.getMonth()]+' '+d.getFullYear();ele('monthGrid').innerHTML=monthGrid();renderFastBanner();ele('monthPicker').value=String(d.getMonth());ele('yearPicker').value=String(d.getFullYear());ele('prevMonth').disabled=d.getFullYear()===2025&&d.getMonth()===0;ele('nextMonth').disabled=d.getFullYear()===2027&&d.getMonth()===11;ele('annual2027').hidden=d.getFullYear()!==2027;document.querySelectorAll('[data-jump-year]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.jumpYear)===d.getFullYear())));ele('feastLegend').innerHTML=buildFeastLegend();}
+function render(){const d=fromKey(selected);ele('weekStrip').innerHTML=weekdayStrip();ele('fullDate').textContent=WEEK[d.getDay()]+', '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' г.';ele('dateSubtitle').textContent=titleFor(selected);ele('monthMarker').textContent=MONTHS[d.getMonth()]+' '+d.getFullYear();ele('monthGrid').innerHTML=monthGrid();ele('monthPicker').value=String(d.getMonth());ele('yearPicker').value=String(d.getFullYear());ele('prevMonth').disabled=ele('monthArrowPrev').disabled=d.getFullYear()===2025&&d.getMonth()===0;ele('nextMonth').disabled=ele('monthArrowNext').disabled=d.getFullYear()===2027&&d.getMonth()===11;ele('annual2027').hidden=d.getFullYear()!==2027;ele('feastLegend').innerHTML=buildFeastLegend();}
 function openDetail(k){selectDate(k);const d=fromKey(k);ele('detailDate').textContent=WEEK[d.getDay()]+', '+d.getDate()+' '+MONTHS[d.getMonth()]+' '+d.getFullYear()+' г.';ele('detailTitle').textContent='Светци и празници';ele('detailIcon').outerHTML=iconMarkup(k,'sheet-icon').replace('class="sheet-icon"','class="sheet-icon" id="detailIcon"');ele('detailFeastType').innerHTML=feastChipHTML(k);ele('detailFast').textContent=getStatus(k)[0];const period=fastPeriodAt(k),periodLine=ele('detailFastPeriod');periodLine.hidden=!period;periodLine.className='detail-fast-period'+(period?' fast-'+period[3]:'');periodLine.textContent=period?fastDescription(period,k):'';ele('detailText').textContent=DATA[k].text;ele('detailShade').classList.add('open');ele('prevDay').disabled=k==='2025-01-01';ele('nextDay').disabled=k==='2027-12-31';}
 function closeSheets(){ele('detailShade').classList.remove('open');ele('menuShade').classList.remove('open')}
 function openMenu(){ele('menuShade').classList.add('open')}
 function keysForMonth(m,y=fromKey(selected).getFullYear()){return Array.from({length:new Date(y,m+1,0).getDate()},(_,i)=>`${y}-${pad(m+1)}-${pad(i+1)}`)}
 function buildPrint(){const d=fromKey(selected),m=d.getMonth(),y=d.getFullYear(),keys=keysForMonth(m,y);const first=fromKey(keys[0]).getDay(),offset=(first+6)%7;const blanks=Array(offset).fill('<div class="print-day empty"></div>');for(const k of keys){const day=fromKey(k),meta=feastMeta(k);blanks.push(`<div class="print-day${fastPeriodAt(k)?' fast-span fast-'+fastPeriodAt(k)[3]:''}"><b>${day.getDate()}</b><span class="name">${esc(titleFor(k))}</span><span class="state">${esc(getStatus(k)[0])}</span><span class="state">${esc(meta.name)} — ${esc(meta.desc)}</span></div>`)}while(blanks.length<42)blanks.push('<div class="print-day empty"></div>');ele('printSheet').innerHTML=`<div class="print-title"><h1>☦ ${MONTHS[m]} ${y}</h1><small>ПРАВОСЛАВЕН КАЛЕНДАР</small></div><div class="print-week">${['Понеделник','Вторник','Сряда','Четвъртък','Петък','Събота','Неделя'].map(x=>`<span>${x}</span>`).join('')}</div><div class="print-grid">${blanks.join('')}</div><div class="print-feast-legend">${Object.entries(FEAST_COLORS).map(([key,meta])=>`<span><span class="feast-mark ${meta.cls}" aria-hidden="true"></span>${esc(FEAST_LEGEND_LABELS[key])}</span>`).join('')}</div><div class="print-credits"><span>☩ Постно · 🕯 Строг пост · 🫒 С олио · 🐟 Риба · 🌿 Блажи се</span><span>${y===2027?'По предоставените данни за 2027 г.':'По съществуващия календар за '+y+' г.'}</span></div>`;ele('printDetails').innerHTML=`<h1>☦ ${MONTHS[m]} ${y} — Светци и празници</h1><div class="print-detail-list">${keys.map(k=>{const day=fromKey(k),meta=feastMeta(k);return `<div class="print-detail"><b>${day.getDate()} ${MONTHS[m]} · ${WEEK[day.getDay()]}</b><div>${esc(DATA[k].text)}</div><span class="state">${esc(getStatus(k)[0])}</span><span class="state">${esc(meta.name)} — ${esc(meta.desc)}</span></div>`}).join('')}</div>`}
 function printMonth(detailed){closeSheets();buildPrint();document.body.classList.toggle('print-full',detailed);window.print()}
-function init(){ele('yearPicker').innerHTML=[2025,2026,2027].map(y=>`<option value="${y}">${y}</option>`).join('');ele('monthPicker').innerHTML=MONTHS.map((m,i)=>`<option value="${i}">${m}</option>`).join('');render();ele('weekStrip').addEventListener('click',ev=>{const button=ev.target.closest('[data-date]');if(button&&!button.disabled)selectDate(button.dataset.date)});ele('monthGrid').addEventListener('click',ev=>{const button=ev.target.closest('[data-day]');if(button)openDetail(button.dataset.day)});ele('openMenu').onclick=openMenu;ele('closeMenu').onclick=closeSheets;ele('closeDetail').onclick=closeSheets;ele('detailShade').addEventListener('click',e=>{if(e.target===ele('detailShade'))closeSheets()});ele('menuShade').addEventListener('click',e=>{if(e.target===ele('menuShade'))closeSheets()});ele('prevDay').onclick=()=>{const d=fromKey(selected);d.setDate(d.getDate()-1);if(inScope(d))openDetail(keyFor(d))};ele('nextDay').onclick=()=>{const d=fromKey(selected);d.setDate(d.getDate()+1);if(inScope(d))openDetail(keyFor(d))};ele('prevMonth').onclick=()=>moveMonth(-1);ele('nextMonth').onclick=()=>moveMonth(1);ele('monthPicker').onchange=e=>{const m=Number(e.target.value),y=fromKey(selected).getFullYear();selectDate(keyFor(at(m,Math.min(fromKey(selected).getDate(),new Date(y,m+1,0).getDate()),y)))};ele('yearPicker').onchange=e=>{const d=fromKey(selected),y=Number(e.target.value),day=Math.min(d.getDate(),new Date(y,d.getMonth()+1,0).getDate());selectDate(keyFor(new Date(y,d.getMonth(),day,12)))};document.querySelectorAll('[data-jump-year]').forEach(b=>b.onclick=()=>{const d=fromKey(selected),y=Number(b.dataset.jumpYear),day=Math.min(d.getDate(),new Date(y,d.getMonth()+1,0).getDate());selectDate(keyFor(new Date(y,d.getMonth(),day,12)))});ele('printMonth').onclick=()=>printMonth(false);ele('printAllDetails').onclick=()=>printMonth(true);window.addEventListener('afterprint',()=>document.body.classList.remove('print-full'));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets();if(e.key==='ArrowLeft'&&!ele('detailShade').classList.contains('open'))moveDay(-1);if(e.key==='ArrowRight'&&!ele('detailShade').classList.contains('open'))moveDay(1)});let touchStart=null;ele('weekStrip').addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});ele('weekStrip').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)moveWeek(dx<0?1:-1)},{passive:true})}
+function init(){ele('yearPicker').innerHTML=[2025,2026,2027].map(y=>`<option value="${y}">${y}</option>`).join('');ele('monthPicker').innerHTML=MONTHS.map((m,i)=>`<option value="${i}">${m}</option>`).join('');render();ele('weekStrip').addEventListener('click',ev=>{const button=ev.target.closest('[data-date]');if(button&&!button.disabled)selectDate(button.dataset.date)});ele('monthGrid').addEventListener('click',ev=>{const button=ev.target.closest('[data-day]');if(button)openDetail(button.dataset.day)});ele('openMenu').onclick=openMenu;ele('closeMenu').onclick=closeSheets;ele('closeDetail').onclick=closeSheets;ele('detailShade').addEventListener('click',e=>{if(e.target===ele('detailShade'))closeSheets()});ele('menuShade').addEventListener('click',e=>{if(e.target===ele('menuShade'))closeSheets()});ele('prevDay').onclick=()=>{const d=fromKey(selected);d.setDate(d.getDate()-1);if(inScope(d))openDetail(keyFor(d))};ele('nextDay').onclick=()=>{const d=fromKey(selected);d.setDate(d.getDate()+1);if(inScope(d))openDetail(keyFor(d))};ele('prevMonth').onclick=ele('monthArrowPrev').onclick=()=>moveMonth(-1);ele('nextMonth').onclick=ele('monthArrowNext').onclick=()=>moveMonth(1);ele('monthPicker').onchange=e=>{const m=Number(e.target.value),y=fromKey(selected).getFullYear();selectDate(keyFor(at(m,Math.min(fromKey(selected).getDate(),new Date(y,m+1,0).getDate()),y)))};ele('yearPicker').onchange=e=>{const d=fromKey(selected),y=Number(e.target.value),day=Math.min(d.getDate(),new Date(y,d.getMonth()+1,0).getDate());selectDate(keyFor(new Date(y,d.getMonth(),day,12)))};ele('printMonth').onclick=()=>printMonth(false);ele('printAllDetails').onclick=()=>printMonth(true);window.addEventListener('afterprint',()=>document.body.classList.remove('print-full'));document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets();if(e.key==='ArrowLeft'&&!ele('detailShade').classList.contains('open'))moveDay(-1);if(e.key==='ArrowRight'&&!ele('detailShade').classList.contains('open'))moveDay(1)});let touchStart=null;ele('weekStrip').addEventListener('touchstart',e=>{if(e.touches.length===1)touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});ele('weekStrip').addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)moveWeek(dx<0?1:-1)},{passive:true})}
 
 const CLASSIC_EASTERS=['2025-04-20','2026-04-12','2027-05-02'];
 const CLASSIC_GREAT=[
