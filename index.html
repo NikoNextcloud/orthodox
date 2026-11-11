@@ -424,6 +424,10 @@ for(const [date,fullText] of Object.entries(USER_DAILY_2027)){
  r.dailyText2027=fullText;
  r.feastName=compact2027Title(fullText);
  r.sourceFast2027=fullText.match(/\.(строг пост|постен ден|сирна седмица|риба|пост)\s*$/i)?.[1]||'';
+ // A precise indication in the owner's source takes precedence over generic generated rules.
+ if(r.sourceFast2027==='риба')r.fasting='fish';
+ else if(r.sourceFast2027==='строг пост')r.fasting='strict';
+ else if(r.sourceFast2027==='постен ден'&&r.fasting==='free')r.fasting='strict';
  r.verified=false;
 }
 
