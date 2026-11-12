@@ -907,8 +907,8 @@ const inScope=d=>d.getFullYear()>=2025&&d.getFullYear()<=2027;
 /* Public-domain Orthodox illustrations from the illustrated Menaion, 1903-1911.
    MediaWiki category titles contain a liturgical month (01=Sep ... 12=Aug), day, and image index.
    Do not infer an icon merely from its date: match its named saint against this day's calendar text. */
-const COMMONS_FOLDER='Category:Illustrations from Russian Menaion Reader';
-const ICON_INDEX_CACHE='orthodox-commons-menaion-index-v1';
+const COMMONS_FOLDERS=['Category:Illustrations from Russian Menaion Reader','Category:Images from Russian Menaion Reader'];
+const ICON_INDEX_CACHE='orthodox-commons-menaion-index-v2-full-year';
 const VERIFIED_ICON_SEEDS=[
  ['09-05','01051 Захария и Елисавета'],
  ['09-12','01121 Автоном'],
@@ -974,13 +974,19 @@ const commonsFileName=title=>title.replace(/^File:/,'');
 const commonsSrc=file=>'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(file);
 const commonsPage=file=>'https://commons.wikimedia.org/wiki/File:'+encodeURIComponent(file.replace(/ /g,'_'));
 const ICON_CREDITS={'St Petka-Klisura Monastery Icon.jpg':{author:'Пакко',license:'CC BY-SA 3.0',url:'https://creativecommons.org/licenses/by-sa/3.0/'}};
-const normalizeSaint=s=>String(s).toLocaleLowerCase('bg-BG').replace(/ё/g,'е').replace(/й/g,'и').replace(/[ъь]/g,'').replace(/феодор/g,'теодор').replace(/афанас/g,'атанас').replace(/евфими/g,'евтими').replace(/хрисанф/g,'хрисант').replace(/[^а-я]+/g,' ');
+const normalizeSaint=s=>String(s).toLocaleLowerCase('bg-BG')
+ .replace(/ё/g,'е').replace(/й/g,'и').replace(/[ъь]/g,'')
+ .replace(/иоанн/g,'иоан').replace(/феодор/g,'теодор').replace(/афанас/g,'атанас')
+ .replace(/евфими/g,'евтими').replace(/хрисанф/g,'хрисант')
+ .replace(/косма/g,'козма').replace(/савва/g,'сава').replace(/аввакум/g,'авакум')
+ .replace(/иаков/g,'яков').replace(/[^а-я]+/g,' ');
 const stopSaintWords=new Set(['свят','святых','святая','святой','свети','свещ','преподобни','преподобный','чудотворец','мученики','мученица','мученик','праздник','празник','собор','пророк','архангела','перенесение','мощей','господня','благоверный','великого','воскресение']);
 function saintNameMatches(k,name){
  const body=normalizeSaint(DATA[k]?.text||'');
  if(!body||body.includes('црковен ден'))return false;
- const words=normalizeSaint(name).split(' ').filter(w=>w.length>=3&&!stopSaintWords.has(w));
- return words.some(w=>w.length===3?body.split(' ').includes(w):body.includes(w.slice(0,Math.min(w.length,5))));
+ const words=normalizeSaint(name).split(' ').filter(w=>w.length>=4&&!stopSaintWords.has(w));
+ const dayWords=body.split(' ').filter(w=>w.length>=4);
+ return words.some(w=>dayWords.some(d=>d===w||(w.length>=5&&d.length>=5&&d.slice(0,5)===w.slice(0,5))));
 }
 function registerReaderIcon(file){
  const m=/^Жития Святых \(1903-1911\) - икона (\d{2})(\d{2})(\d)\s+(.+)\.(png|jpe?g)$/i.exec(file);
@@ -1006,10 +1012,17 @@ function iconCandidates(k){
  }
  if(!CURATED_MOVABLE.includes('2027-'+mmdd)&&CURATED['2027-'+mmdd]&&saintNameMatches(k,titleFor('2027-'+mmdd)))add(matches(CURATED['2027-'+mmdd],titleFor('2027-'+mmdd)));
  if((year===2026||year===2027)&&(mmdd.startsWith('11-')||mmdd.startsWith('12-')))add({src:'./icons/'+mmdd+'.webp',file:null,name:titleFor(k)});
- for(const item of verifiedReaderIcons[mmdd]||[])if(saintNameMatches(k,item.name))add(matches(item.file,item.name));
+ const readerIllustrations=verifiedReaderIcons[mmdd]||[];
+ for(const item of readerIllustrations)if(saintNameMatches(k,item.name))add(matches(item.file,item.name));
  if(VERIFIED_EXTRA_ICONS[mmdd]&&saintNameMatches(k,
   ({'01-28':'Ефрем','02-23':'Поликарп','03-04':'Герасим','03-09':'мъченици в Севастия','10-02':'Киприан','10-07':'Сергий','10-14':'Петка','10-22':'Аверкий','10-26':'Димитър','11-01':'Козма и Дамян','11-11':'Мина','12-06':'Николай'})[mmdd]))
   add(matches(VERIFIED_EXTRA_ICONS[mmdd],titleFor(k)));
+ // Day-specific Menaion art for days with no precisely matched saint illustration.
+ // The title always identifies the saint actually depicted, avoiding false labels.
+ if(!items.length&&readerIllustrations.length){
+  const item=readerIllustrations[0];
+  add(matches(item.file,'Миней за '+mmdd+': '+item.name));
+ }
  return items;
 }
 const sourceFor=k=>iconCandidates(k)[0]?.src||'';
@@ -1027,30 +1040,48 @@ function updateDetailIconGallery(k){
 async function loadSaintIconIndex(){
  try{
   const cache=JSON.parse(localStorage.getItem(ICON_INDEX_CACHE)||'null');
-  if(cache&&Array.isArray(cache.files)&&Date.now()-cache.when<30*86400000&&cache.files.length>100){
+  if(cache&&Array.isArray(cache.files)&&cache.files.length>=500&&Date.now()-cache.when<30*86400000){
    cache.files.forEach(registerReaderIcon);
    render();if(ele('detailShade').classList.contains('open'))updateDetailIconGallery(selected);
    return;
   }
  }catch(_){}
- const all=[];
- let continuation=null;
- try{
+ const all=new Set();
+ async function readCategory(folder){
+  let continuation=null;
   for(let batch=0;batch<5;batch++){
-   const query=new URLSearchParams({action:'query',list:'categorymembers',cmtitle:COMMONS_FOLDER,cmtype:'file',cmlimit:'500',cmprop:'title',format:'json',origin:'*'});
+   const query=new URLSearchParams({action:'query',list:'categorymembers',cmtitle:folder,
+    cmtype:'file',cmlimit:'500',cmprop:'title',format:'json',origin:'*'});
    if(continuation)query.set('cmcontinue',continuation);
    const response=await fetch('https://commons.wikimedia.org/w/api.php?'+query.toString(),{mode:'cors',credentials:'omit'});
-   if(!response.ok)throw Error('Commons '+response.status);
+   if(!response.ok)throw Error('Wikimedia Commons '+response.status);
    const payload=await response.json();
-   for(const file of payload.query?.categorymembers||[])if(typeof file.title==='string'){const name=commonsFileName(file.title);all.push(name);registerReaderIcon(name);}
+   if(payload.error)throw Error(payload.error.info||'Wikimedia Commons API error');
+   for(const item of payload.query?.categorymembers||[])if(typeof item.title==='string'){
+    const file=commonsFileName(item.title);
+    all.add(file);
+    registerReaderIcon(file);
+   }
    continuation=payload.continue?.cmcontinue||null;
    if(!continuation)break;
   }
-  if(all.length>100){
-   try{localStorage.setItem(ICON_INDEX_CACHE,JSON.stringify({when:Date.now(),files:all}));}catch(_){}
-   render();if(ele('detailShade').classList.contains('open')){ele('detailIcon').outerHTML=iconMarkup(selected,'sheet-icon').replace('class="sheet-icon"','class="sheet-icon" id="detailIcon"');updateDetailIconGallery(selected);}
+ }
+ const results=await Promise.allSettled(COMMONS_FOLDERS.map(readCategory));
+ if(all.size){
+  if(all.size>=500){
+   try{localStorage.setItem(ICON_INDEX_CACHE,JSON.stringify({when:Date.now(),files:[...all]}));}catch(_){}
   }
- }catch(err){console.info('Архивът с икони е временно недостъпен; запазени са проверените изображения.',err.message)}
+  render();
+  if(ele('detailShade').classList.contains('open')){
+   ele('detailIcon').outerHTML=iconMarkup(selected,'sheet-icon').replace('class="sheet-icon"','class="sheet-icon" id="detailIcon"');
+   updateDetailIconGallery(selected);
+  }
+ }
+ for(let i=0;i<results.length;i++)if(results[i].status==='rejected')
+  console.info('Архивът с икони не отговори:',COMMONS_FOLDERS[i],results[i].reason?.message||'');
+ const supportedDays=Array.from({length:365},(_,i)=>new Date(Date.UTC(2027,0,i+1)).toISOString().slice(0,10))
+  .filter(k=>iconCandidates(k).length).length;
+ console.info('Православен календар 2027: изображения за '+supportedDays+' от 365 дни.');
 }
 document.addEventListener('error',event=>{
  const img=event.target;
